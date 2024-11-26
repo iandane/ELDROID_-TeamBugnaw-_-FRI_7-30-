@@ -28,18 +28,11 @@
             android:layout_toLeftOf="@+id/notifBell"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/radius_button"
             android:backgroundTint="@color/lightgrey"
             app:queryHint="Search EcoConnect..." />
 
-        <ImageView
-            android:id="@+id/notifBell"
-            android:layout_width="70dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_margin="5dp"
-            android:src="@drawable/round_circle_notifications_24" />
 
         <RelativeLayout
             android:layout_width="match_parent"
