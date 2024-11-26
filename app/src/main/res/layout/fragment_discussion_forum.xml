@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.bottomnav.DiscussionForum.DiscussionForumFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgGreen"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/filter_btn"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/tulokabaglis" />
+
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/filter_btn"
+            android:layout_toLeftOf="@+id/notifBell"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/radius_button"
+            android:backgroundTint="@color/lightgrey"
+            app:queryHint="Search EcoConnect..." />
+
+        <ImageView
+            android:id="@+id/notifBell"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/round_circle_notifications_24" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/secDevider"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="80dp"
+                android:background="@color/darkblue" />
+
+            <LinearLayout
+                android:id="@+id/usersheader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="90dp"
+                android:orientation="horizontal"
+                android:background="@color/lightgray"
+                android:padding="10dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/usersprofile"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/secDevider"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/toji"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="#FF0000"
+                    app:shapeAppearanceOverlay="@style/Circular"/>
+
+                <EditText
+                    android:id="@+id/postEditText"
+                    android:layout_width="180dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/usersprofile"
+                    android:layout_weight="1"
+                    android:background="@drawable/post"
+                    android:gravity="start|top"
+                    android:hint="What's on your mind?"
+                    android:inputType="textMultiLine"
+                    android:maxLines="3"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    app:layout_constraintStart_toEndOf="@+id/usersprofile"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/imageAdd"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/gal"
+                    android:layout_weight="0"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/postEditText"/>
+
+                <Button
+                    android:id="@+id/postButton"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Post"
+                    android:onClick="onPostButtonClick"
+                    android:layout_toRightOf="@id/imageAdd"
+                    />
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/messagesRecyclerView"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/usersheader"
+                android:layout_weight="1" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>
