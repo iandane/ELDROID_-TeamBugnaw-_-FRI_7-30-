@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="lightGreen">#4BE24B</color>
+    <color name="darkblue">#34495E</color>
+    <color name="eucalyptus">#4F7942</color>
+    <color name="transparent">#00000000</color>
+    <color name="lightgray">#BFC9CA</color>
+    <color name="backgGreen">#92A992</color>
+    <color name="lightgrey">#D5D0D0</color>
+    <color name="lightDark">#1C1B1B</color>
+    <color name="headerGreen">#6ABB3C</color>
+</resources>

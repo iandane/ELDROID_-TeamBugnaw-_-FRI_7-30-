@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.bottomnav.home.NewsFeedFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgGreen"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/filter_btn"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/tulokabaglis" />
+
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/filter_btn"
+            android:layout_toLeftOf="@+id/notifBell"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/radius_button"
+            android:backgroundTint="@color/lightgrey"
+            app:queryHint="Search EcoConnect..." />
+
+        <ImageView
+            android:id="@+id/notifBell"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/round_circle_notifications_24" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/secDevider"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="80dp"
+                android:background="@color/darkblue" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/messagesRecyclerView"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/secDevider"
+                android:layout_weight="1" />
+        </RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.bottomnav.dashboard.crowdfunding.Donation">
+
+    <LinearLayout
+        android:id="@+id/crowdfundBox"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bottom_line_border"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/transparent"
+            android:src="@drawable/back_arrow"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/crowdfund"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="Donation"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+
+            android:layout_marginLeft="5dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help us to "
+        android:textSize="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter_bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save the planet."
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/headerGreen"
+        android:fontFamily="@font/inter_bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/inter_light"
+        android:text="Join our mission to save the planet! \nSupport our eco-conscious initiatives and \nbe a part of positive change for a \nsustainable future."
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:max="100000"
+        android:thumbTint="@color/lightgray"
+        android:progressTint="@color/headerGreen"
+        android:progress="50000"/>
+
+    <EditText
+        android:id="@+id/seekBarValue"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:inputType="number"
+        android:textSize="20dp"
+        android:fontFamily="@font/inter_bold"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/goal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/donation_border_box"
+            android:padding="20dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="$1M \nGoal"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/daysLeft"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/goal"
+            android:background="@drawable/donation_border_box"
+            android:padding="20dp"
+            android:text="50 Days\n  to Go"
+            android:textColor="@color/black" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="50dp">
+        <Button
+            android:id="@+id/contributeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/inter"
+            android:background="@color/headerGreen"
+            android:text="Contribute"
+            android:padding="10dp"/>
+    </RelativeLayout>
+</LinearLayout>
