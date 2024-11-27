@@ -145,37 +145,6 @@
                     android:inputType="textPassword"
                     android:background="@drawable/signup_border" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Role:"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"/>
-
-                <RadioGroup
-                    android:id="@+id/roleGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="20dp">
-
-                    <RadioButton
-                        android:id="@+id/radioClient"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Client"
-                        android:textColor="@color/black" />
-
-                    <RadioButton
-                        android:id="@+id/radioUser"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="User"
-                        android:textColor="@color/black" />
-                </RadioGroup>
-
                 <Button
                     android:id="@+id/registerBtn"
                     android:layout_width="match_parent"
