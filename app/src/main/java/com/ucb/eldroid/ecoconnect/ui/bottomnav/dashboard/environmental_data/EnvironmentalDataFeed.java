@@ -1,4 +1,4 @@
-package com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboardFragment;
+package com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.environmental_data;
 
 import android.os.Bundle;
 
@@ -10,13 +10,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.ucb.eldroid.ecoconnect.R;
 
-public class ProjectDetails extends AppCompatActivity {
+public class EnvironmentalDataFeed extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_project_details);
+        setContentView(R.layout.activity_environmental_data_feed);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

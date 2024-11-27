@@ -13,10 +13,10 @@
         android:theme="@style/Theme.EcoConnect"
         tools:targetApi="31">
         <activity
-            android:name=".ui.bottomnav.environmentalData.EnvironmentalDataFeed"
+            android:name=".ui.bottomnav.dashboard.environmental_data.EnvironmentalDataFeed"
             android:exported="false" />
         <activity
-            android:name=".ui.bottomnav.dashboardFragment.ProjectDetails"
+            android:name=".ui.bottomnav.dashboard.dashboard_fragment.ProjectDetails"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
