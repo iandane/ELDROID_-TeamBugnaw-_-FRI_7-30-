@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    tools:context=".ui.bottomnav.environmentalData.EnvironmentalDataFeed">
 
     <LinearLayout
         android:id="@+id/header"
@@ -39,11 +39,11 @@
             android:layout_gravity="center_vertical" />
 
     </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/envDataRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/tanjiro"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/envDataRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tanjiro"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
-    </LinearLayout>
+</LinearLayout>
