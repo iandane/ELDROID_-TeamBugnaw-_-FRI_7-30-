@@ -25,7 +25,6 @@ public class DashboardFragment extends Fragment {
         View createProjCardView = view.findViewById(R.id.CreateProjCardview);
         View crowdFundCardView = view.findViewById(R.id.crowdFundCardView);
 
-        // Set the OnClickListener for the CardView
 
         createProjCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,11 +39,10 @@ public class DashboardFragment extends Fragment {
         crowdFundCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start a FragmentTransaction to replace the current fragment with CrowdFundingFragment
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.navHost, new CrowdFundingFragment()) // Replace the fragment
-                        .addToBackStack(null) // Add this transaction to the back stack
-                        .commit(); // Commit the transaction
+                        .replace(R.id.navHost, new CrowdFundingFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         return view;

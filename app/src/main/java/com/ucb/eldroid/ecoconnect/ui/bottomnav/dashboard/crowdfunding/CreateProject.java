@@ -25,7 +25,7 @@ import java.util.Calendar;
 
 public class CreateProject extends AppCompatActivity {
 
-    private static final int IMAGE_PICK_REQUEST_CODE = 1000; // Arbitrary request code
+    private static final int IMAGE_PICK_REQUEST_CODE = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class CreateProject extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                // Set the selected date to the TextView
+
                                 String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
                                 deadlineDateTextView.setText(selectedDate);
                             }
@@ -69,26 +69,22 @@ public class CreateProject extends AppCompatActivity {
         });
     }
     public void onImageClicked(View view) {
-        // Create an intent to open the image picker
+
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");  // Filter for images
-        startActivityForResult(intent, IMAGE_PICK_REQUEST_CODE); // Start the image picker activity
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_REQUEST_CODE);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == IMAGE_PICK_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            // Get the image URI
             Uri selectedImageUri = data.getData();
 
-            // Optionally, you can set the image in an ImageView
-            ImageView imageView = findViewById(R.id.addImage); // Your ImageView where you want to display the image
+            ImageView imageView = findViewById(R.id.addImage);
             imageView.setImageURI(selectedImageUri);
 
-            // If you want to get the path of the selected image, you can use:
             String imagePath = getImagePathFromUri(selectedImageUri);
-            // Do something with the image path, like uploading the image to a server
         }
     }
 
