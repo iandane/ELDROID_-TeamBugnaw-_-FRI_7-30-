@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bground1"
+    tools:context=".ui.StartingPage">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/pic1"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:src="@drawable/pic1start"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:id="@+id/pic2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/pic1"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/pic2start"/>
+
+        <TextView
+            android:id="@+id/start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Let's Get Started"
+            android:textStyle="bold"
+            android:textSize="75dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/pic2"
+            android:layout_marginLeft="30dp"/>
+
+        <Button
+            android:id="@+id/joinButton"
+            android:layout_width="190dp"
+            android:layout_height="50dp"
+            android:text="JOIN NOW"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button"
+            android:layout_marginTop="70dp"
+            android:layout_below="@+id/start"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</LinearLayout>

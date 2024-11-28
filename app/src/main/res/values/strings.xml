@@ -2,4 +2,15 @@
     <string name="app_name">EcoConnect</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="environmental_data_items">
+        <item>Environmental Pollution</item>
+        <item>Ecosystem and Biodiversity</item>
+        <item>Deforestation &amp; Desertification</item>
+        <item>Sustainable Development Goals</item>
+        <item>Waste Management</item>
+        <item>Energy Conservation</item>
+        <item>Responsible Consumption Production</item>
+        <item>Climate Change</item>
+    </string-array>
 </resources>

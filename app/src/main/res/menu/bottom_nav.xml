@@ -5,6 +5,7 @@
         android:title="Dashboard"
         android:id="@+id/dashboard"
         android:icon="@drawable/dashboard" />
+
     <item
         android:title="Fund"
         android:id="@+id/fund"

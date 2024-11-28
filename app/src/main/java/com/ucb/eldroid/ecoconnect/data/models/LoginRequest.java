@@ -1,12 +1,10 @@
 package com.ucb.eldroid.ecoconnect.data.models;
 
-public class User {
-    private String name;
+public class LoginRequest {
     private String email;
     private String password;
 
-    public User(String name, String email, String password) {
-        this.name = name;
+    public LoginRequest(String email, String password) {
         this.email = email;
         this.password = password;
     }
