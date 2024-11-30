@@ -27,13 +27,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
     private ApiService apiService;
 
+=======
+>>>>>>> wagas
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
         apiService = RetrofitClient.getInstance().create(ApiService.class);
 
         // Example: Register User
@@ -80,5 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+=======
+>>>>>>> wagas
     }
 }
