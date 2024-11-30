@@ -6,13 +6,20 @@ import com.ucb.eldroid.ecoconnect.data.models.User;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiService {
 
-    @POST("register")
-    Call<ResponseBody> registerUser(@Body User user);
+    @POST("/api/register")
+    Call<ResponseBody> postRegister(
+            @Body User user);
 
-    @POST("login")
-    Call<ResponseBody> loginUser(@Body LoginRequest loginRequest);
+    @POST("/api/login")
+    Call<ResponseBody> postLogin(
+            @Body LoginRequest loginRequest);
+    @POST("/api/list")
+    Call<ResponseBody> postList(
+            @Header("Authorization") String authToken,
+            @Body LoginRequest loginRequest);
 }
