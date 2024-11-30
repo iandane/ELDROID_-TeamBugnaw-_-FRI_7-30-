@@ -121,26 +121,10 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/forgotPass"/>
 
-                <Button
-                    android:id="@+id/signInGoogle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/rounded_button"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:textColor="@color/white"
-                    android:drawableStart="@drawable/google"
-                    android:paddingStart="50dp"
-                    android:paddingEnd="45dp"
-                    android:text="Sign in with Google"
-                    android:layout_below="@+id/loginBtn"/>
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/signInGoogle"
+                    android:layout_below="@+id/loginBtn"
                     android:layout_marginTop="10dp">
 
                     <TextView
