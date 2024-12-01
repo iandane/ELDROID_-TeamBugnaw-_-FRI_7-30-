@@ -62,37 +62,46 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp">
 
-            <ImageView
-                android:id="@+id/profileImageView"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/ic_account"
-                android:background="@drawable/signup_profile"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Full Name"
+                    android:text="First Name"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"/>
 
                 <EditText
-                    android:id="@+id/fullName"
+                    android:id="@+id/firstName"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:textColor="@color/black"
                     android:background="@drawable/signup_border"
-                    />
+                    android:padding="10dp"
+                    android:inputType="textCapWords"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Name"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="5dp"/>
+
+                <EditText
+                    android:id="@+id/lastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/signup_border"
+                    android:padding="10dp"
+                    android:inputType="textCapWords"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -109,7 +118,7 @@
                     android:layout_height="40dp"
                     android:textColor="@color/black"
                     android:background="@drawable/signup_border"
-                    />
+                    android:inputType="textCapWords"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -126,7 +135,8 @@
                     android:layout_height="40dp"
                     android:textColor="@color/black"
                     android:background="@drawable/signup_border"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    android:padding="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -143,7 +153,8 @@
                     android:layout_height="40dp"
                     android:textColor="@color/black"
                     android:inputType="textPassword"
-                    android:background="@drawable/signup_border" />
+                    android:background="@drawable/signup_border"
+                    android:padding="10dp"/>
 
                 <Button
                     android:id="@+id/registerBtn"
@@ -155,8 +166,6 @@
                     android:text="Register"
                     android:textColor="@color/white" />
             </LinearLayout>
-
-
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

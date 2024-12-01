@@ -14,6 +14,7 @@ import com.ucb.eldroid.ecoconnect.ui.bottomnav.profile.ProfileFragment
 
 class BottomNavigationBar : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_navigation_bar)
