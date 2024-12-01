@@ -6,9 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ucb.eldroid.ecoconnect.R
@@ -20,18 +18,12 @@ class CreateProject : AppCompatActivity() {
         setContentView(R.layout.activity_create_project)
 
 
-        val envDataSpinner = findViewById<Spinner>(R.id.envDataSpinner)
+
 
         val deadlineDateTextView = findViewById<TextView>(R.id.deadlineDateTextView)
 
 
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.environmental_data_items,
-            android.R.layout.simple_spinner_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        envDataSpinner.adapter = adapter
+
 
         deadlineDateTextView.setOnClickListener {
             val calendar = Calendar.getInstance()
