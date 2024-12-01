@@ -1,0 +1,48 @@
+package com.ucb.eldroid.ecoconnect.viewmodel.auth
+
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import com.ucb.eldroid.ecoconnect.data.ApiService
+import com.ucb.eldroid.ecoconnect.data.models.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+class ProfileViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val _userData = MutableLiveData<User?>()
+    val userData: MutableLiveData<User?> get() = _userData
+
+    fun fetchUserData(token: String) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://10.0.0.33:8000/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val apiService = retrofit.create(ApiService::class.java)
+
+        val call = apiService.getUser("Bearer $token")
+        call.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    val user = response.body()
+                    if (user != null) {
+                        _userData.postValue(user)
+                    } else {
+                        Log.e("ProfileViewModel", "Error parsing user data from response")
+                    }
+                } else {
+                    Log.e("ProfileViewModel", "Error response: ${response.code()} - ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Log.e("ProfileViewModel", "Network call failed: ${t.message}")
+            }
+        })
+    }
+}

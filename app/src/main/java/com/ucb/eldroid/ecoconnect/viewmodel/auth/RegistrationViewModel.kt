@@ -1,8 +1,12 @@
 package com.ucb.eldroid.ecoconnect.viewmodel.auth
 
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.ucb.eldroid.ecoconnect.data.ApiService
 import com.ucb.eldroid.ecoconnect.data.models.User
 import okhttp3.ResponseBody
@@ -12,8 +16,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RegisterViewModel : ViewModel() {
-    // LiveData to manage registration status and errors
+class RegisterViewModel(application: Application) : AndroidViewModel(application) {
     private val _registrationSuccess = MutableLiveData<Boolean>()
     val registrationSuccess: LiveData<Boolean> get() = _registrationSuccess
 
@@ -23,9 +26,7 @@ class RegisterViewModel : ViewModel() {
     private val _validationError = MutableLiveData<String>()
     val validationError: LiveData<String> get() = _validationError
 
-    // Function to register a user
     fun registerUser(firstName: String, lastName: String, email: String, password: String, passwordConfirmation: String) {
-        // Validate fields
         if (firstName.isEmpty()) {
             _validationError.postValue("First name is required")
             return
@@ -61,9 +62,8 @@ class RegisterViewModel : ViewModel() {
             return
         }
 
-        // Proceed with the registration process
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.15:8000/") // Replace with your server URL
+            .baseUrl("http://10.0.0.33:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -74,6 +74,12 @@ class RegisterViewModel : ViewModel() {
         call.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 if (response.isSuccessful) {
+                    val responseBody = response.body()?.string()
+                    val gson = Gson()
+                    val jsonObject = gson.fromJson(responseBody, JsonObject::class.java)
+                    val token = jsonObject.get("token").asString
+                    user.token = token // Set the token in the user object
+                    saveUser(user)
                     _registrationSuccess.postValue(true)
                 } else {
                     _registrationError.postValue("Registration Failed: ${response.message()}")
@@ -84,5 +90,15 @@ class RegisterViewModel : ViewModel() {
                 _registrationError.postValue("Registration Failed: ${t.message}")
             }
         })
+    }
+
+    private fun saveUser(user: User) {
+        val sharedPreferences = getApplication<Application>().getSharedPreferences("AuthPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("USER_FIRST_NAME", user.firstName)
+        editor.putString("USER_LAST_NAME", user.lastName)
+        editor.putString("USER_EMAIL", user.email)
+        editor.putString("AUTH_TOKEN", user.token) // Save the token
+        editor.apply()
     }
 }
