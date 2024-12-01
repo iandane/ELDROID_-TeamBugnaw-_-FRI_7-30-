@@ -17,13 +17,7 @@ class CreateProject : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_project)
 
-
-
-
         val deadlineDateTextView = findViewById<TextView>(R.id.deadlineDateTextView)
-
-
-
 
         deadlineDateTextView.setOnClickListener {
             val calendar = Calendar.getInstance()

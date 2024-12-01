@@ -32,7 +32,7 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             android:gravity="center_vertical"
-            android:text="jaCKE CHAN"/>
+            android:text="@string/jackie_chan"/>
 
         <TextView
             android:id="@+id/postcontent"
@@ -42,7 +42,7 @@
             android:layout_margin="30dp"
             android:layout_marginStart="10dp"
             android:textColor="@color/black"
-            android:text="World Environment Day!" />
+            android:text="@string/world_environment_day" />
 
 
         <ImageView
@@ -98,7 +98,7 @@
             android:layout_alignParentEnd="true"
             android:layout_toRightOf="@id/heart"
             android:layout_below="@id/commentRecyclerView"
-            android:text="Post"
+            android:text="@string/post"
             android:textSize="15dp" />
 
 

@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="Create Project"
+                android:text="@string/create_project"
                 android:textColor="@color/black"
                 android:textSize="30dp"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ledger"
                 android:padding="10dp"
-                android:text="TITLE: "
+                android:text="@string/title"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lato"
-                android:text="DESCRIPTION"
+                android:text="@string/description"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -105,7 +105,7 @@
                 android:id="@+id/projectDescription"
                 android:layout_width="300dp"
                 android:layout_height="100dp"
-                android:hint="What's your project all about?"
+                android:hint="@string/project_hint"
                 android:layout_below="@id/descriptionTxtView"
                 android:layout_marginLeft="15dp" />
 
@@ -135,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Add Photo"
+                android:text="@string/add_photo"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -156,8 +156,6 @@
                 android:columnCount="2"
                 android:rowCount="4">
 
-
-
                 <TextView
                     android:id="@+id/moneyGoalTxtView"
                     android:layout_width="wrap_content"
@@ -167,7 +165,7 @@
                     android:fontFamily="@font/ledger"
                     android:gravity="start"
                     android:padding="8dp"
-                    android:text="Money Goal:"
+                    android:text="@string/money_goal"
                     android:textColor="@color/white" />
 
                 <EditText
@@ -179,7 +177,7 @@
                     android:background="@drawable/project_border"
                     android:gravity="fill_horizontal"
                     android:inputType="number"
-                    android:hint="₱"
+                    android:hint="@string/money_hint"
                     android:padding="8dp"
                     android:paddingLeft="9dp" />
 
@@ -192,7 +190,7 @@
                     android:fontFamily="@font/ledger"
                     android:gravity="start"
                     android:padding="8dp"
-                    android:text="Deadline Date:"
+                    android:text="@string/deadline_date"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -207,7 +205,7 @@
                     android:focusable="true"
                     android:gravity="fill_horizontal"
                     android:padding="10dp"
-                    android:text="Select Deadline"
+                    android:text="@string/select_deadline"
                     android:textSize="13dp" />
 
             </GridLayout>
@@ -224,7 +222,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/linear_color"
             android:fontFamily="@font/lato"
-            android:text="PUBLISH"
+            android:text="@string/publish"
             android:textColor="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
