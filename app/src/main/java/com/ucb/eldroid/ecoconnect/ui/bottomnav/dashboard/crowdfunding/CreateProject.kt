@@ -20,7 +20,6 @@ class CreateProject : AppCompatActivity() {
         setContentView(R.layout.activity_create_project)
 
 
-        val envDataSpinner = findViewById<Spinner>(R.id.envDataSpinner)
 
         val deadlineDateTextView = findViewById<TextView>(R.id.deadlineDateTextView)
 
@@ -30,8 +29,6 @@ class CreateProject : AppCompatActivity() {
             R.array.environmental_data_items,
             android.R.layout.simple_spinner_item
         )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        envDataSpinner.adapter = adapter
 
         deadlineDateTextView.setOnClickListener {
             val calendar = Calendar.getInstance()
