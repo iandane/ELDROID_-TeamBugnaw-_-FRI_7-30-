@@ -63,7 +63,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.0.33:8000/")
+            .baseUrl("http://192.168.1.228:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

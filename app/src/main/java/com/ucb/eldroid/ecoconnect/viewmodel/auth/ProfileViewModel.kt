@@ -19,7 +19,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
 
     fun fetchUserData(token: String) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.0.33:8000/")
+            .baseUrl("http://192.168.1.228:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

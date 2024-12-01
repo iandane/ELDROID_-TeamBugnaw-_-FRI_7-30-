@@ -2,106 +2,76 @@ package com.ucb.eldroid.ecoconnect.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.ucb.eldroid.ecoconnect.R
-import com.ucb.eldroid.ecoconnect.data.ApiService
-import com.ucb.eldroid.ecoconnect.data.models.User
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
+import com.ucb.eldroid.ecoconnect.viewmodel.auth.RegisterViewModel
 
 class Registration : AppCompatActivity() {
-    var editTextFirstName: EditText? = null
-    var editTextLastName: EditText? = null
-    var editTextEmail: EditText? = null
-    var editTextPassword: EditText? = null
-    var editTextRepassword: EditText? = null
+    private val registerViewModel: RegisterViewModel by viewModels()
+
+    private lateinit var firstNameField: EditText
+    private lateinit var lastNameField: EditText
+    private lateinit var emailField: EditText
+    private lateinit var passwordField: EditText
+    private lateinit var reEnterPasswordField: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
-        editTextFirstName = findViewById(R.id.firstName)
-        editTextLastName = findViewById(R.id.lastName)
-        editTextEmail = findViewById(R.id.emailAddress)
-        editTextPassword = findViewById(R.id.password)
-        editTextRepassword = findViewById(R.id.reEnterPass)
+        firstNameField = findViewById(R.id.firstName)
+        lastNameField = findViewById(R.id.lastName)
+        emailField = findViewById(R.id.emailAddress)
+        passwordField = findViewById(R.id.password)
+        reEnterPasswordField = findViewById(R.id.reEnterPass)
 
         val button = findViewById<Button>(R.id.registerBtn)
         val loginHere = findViewById<TextView>(R.id.loginTxt)
 
-        button.setOnClickListener { v: View? -> regUser() }
+        button.setOnClickListener { regUser() }
 
-        loginHere.setOnClickListener { v: View? ->
+        loginHere.setOnClickListener {
             val intent = Intent(this@Registration, Login::class.java)
             startActivity(intent)
         }
-    }
 
-    fun regUser() {
-        val firstName = editTextFirstName!!.text.toString()
-        val lastName = editTextLastName!!.text.toString()
-        val email = editTextEmail!!.text.toString()
-        val password = editTextPassword!!.text.toString()
-        val passwordConfirmation = editTextRepassword!!.text.toString()
-
-        if (password != passwordConfirmation) {
-            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
-            return
+        // Observe LiveData for validation errors
+        registerViewModel.validationError.observe(this) { errorMessage ->
+            if (errorMessage != null) {
+                Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+            }
         }
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.15:8000/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(ApiService::class.java)
-        val user = User(firstName, lastName, email, password, passwordConfirmation)
-
-        val call = apiService.postRegister(user)
-        call!!.enqueue(object : Callback<ResponseBody?> {
-            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@Registration, "Registration Successful", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    try {
-                        val errorBody = response.errorBody()!!.string()
-                        Log.e("RegistrationError", errorBody)
-                        Toast.makeText(
-                            this@Registration,
-                            "Registration Failed: $errorBody",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                        Toast.makeText(
-                            this@Registration,
-                            "Registration Failed: Unable to parse error",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }
+        // Observe LiveData for registration success
+        registerViewModel.registrationSuccess.observe(this) { success ->
+            if (success) {
+                Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show()
+                // Navigate to the Login activity
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+                finish()
             }
+        }
 
-            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                Log.e("RegistrationFailure", t.message!!)
-                Toast.makeText(
-                    this@Registration,
-                    "Registration Failed: " + t.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        })
+        // Observe LiveData for registration failure
+        registerViewModel.registrationError.observe(this) { errorMessage ->
+            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun regUser() {
+        val firstName = firstNameField.text.toString().trim()
+        val lastName = lastNameField.text.toString().trim()
+        val email = emailField.text.toString().trim()
+        val password = passwordField.text.toString().trim()
+        val passwordConfirmation = reEnterPasswordField.text.toString().trim()
+
+        // Call the registerUser method in the ViewModel
+        registerViewModel.registerUser(firstName, lastName, email, password, passwordConfirmation)
     }
 }
