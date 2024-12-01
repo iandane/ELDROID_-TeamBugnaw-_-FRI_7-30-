@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/inter_bold"
-                android:text="Create New Account"
+                android:text="@string/create_new_account"
                 android:textColor="@color/white"
                 android:textSize="30dp" />
 
@@ -41,14 +41,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="100dp"
                     android:textColor="@color/white"
-                    android:text="Already registered?" />
+                    android:text="@string/already_registered" />
 
                 <TextView
                     android:id="@+id/loginTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/lightGreen"
-                    android:text=" Log in Here"
+                    android:text="@string/login_here"
                     android:textStyle="bold"
                     android:layout_toRightOf="@id/alrdyReg"/>
 
@@ -81,7 +81,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Full Name"
+                    android:text="@string/full_name"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"/>
@@ -97,7 +97,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email Address"
+                    android:text="@string/email_address"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"
@@ -114,7 +114,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Password"
+                    android:text="@string/password"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"
@@ -131,7 +131,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Re-enter Password"
+                    android:text="@string/reenter_password"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"
@@ -148,7 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Role:"
+                    android:text="@string/role"
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"
@@ -165,14 +165,14 @@
                         android:id="@+id/radioClient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Client"
+                        android:text="@string/client"
                         android:textColor="@color/black" />
 
                     <RadioButton
                         android:id="@+id/radioUser"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="User"
+                        android:text="@string/user"
                         android:textColor="@color/black" />
                 </RadioGroup>
 
