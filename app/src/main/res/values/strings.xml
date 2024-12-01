@@ -2,4 +2,117 @@
     <string name="app_name">EcoConnect</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //create_project.xml
+        <string name="create_project">Create Project</string>
+        <string name="title">TITLE:</string>
+        <string name="description">DESCRIPTION</string>
+        <string name="project_hint">What\'s your project all about?</string>
+        <string name="add_photo">Add Photo</string>
+        <string name="money_goal">Money Goal:</string>
+        <string name="money_hint">₱</string>
+        <string name="deadline_date">Deadline Date:</string>
+        <string name="select_deadline">Select Deadline</string>
+        <string name="publish">PUBLISH</string>
+
+    //donation.xml
+        <string name="donation">Donation</string>
+        <string name="help_us_to">Help us to</string>
+        <string name="save_the_planet">save the planet.</string>
+        <string name="join_mission">Join our mission to save the planet! \nSupport our eco-conscious initiatives and \nbe a part of positive change for a \nsustainable future.</string>
+        <string name="goal">\$1M Goal</string>
+        <string name="days_to_go">50 Days to Go</string>
+        <string name="contribute">Contribute</string>
+
+    //edit_profile.xml
+        <string name="edit_profile">Edit Profile</string>
+        <string name="new_name_hint">New Name</string>
+        <string name="new_email_hint">New Email</string>
+        <string name="new_password_hint">New Password</string>
+        <string name="save">Save</string>
+
+    //login.xml
+        <string name="ecoconnect">EcoConnect</string>
+        <string name="welcome">Welcome!</string>
+        <string name="enter_email_password">Enter Your Email &amp; Password</string>
+        <string name="email_hint">Email Address</string>
+        <string name="password_hint">Password</string>
+        <string name="forgot_password">Forgot Password?</string>
+        <string name="login">LOGIN</string>
+        <string name="sign_in_google">Sign in with Google</string>
+        <string name="dont_have_account">Don’t have an account?</string>
+        <string name="sign_up"> Sign Up</string>
+
+    //project_details.xml
+        <string name="project_details">Project Details</string>
+        <string name="title2">Title</string>
+        <string name="donate">Donate</string>
+        <string name="total_money_goal">Total Money Goal</string>
+        <string name="details">Details</string>
+        <string name="description2">Description: </string>
+        <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</string>
+        <string name="money_goal2">Money Goal: </string>
+        <string name="goal_amount">P 1000000</string>
+        <string name="end_date">End Date: </string>
+        <string name="date">05/30/2024</string>
+
+    //registration.xml
+        <string name="create_new_account">Create New Account</string>
+        <string name="already_registered">Already registered?</string>
+        <string name="login_here"> Log in Here</string>
+        <string name="full_name">Full Name</string>
+        <string name="email_address">Email Address</string>
+        <string name="password">Password</string>
+        <string name="reenter_password">Re-enter Password</string>
+        <string name="role">Role:</string>
+        <string name="client">Client</string>
+        <string name="user">User</string>
+        <string name="search_hint">Search ...</string>
+
+    //account_info.xml
+        <string name="account">Account</string>
+        <string name="name">Name</string>
+        <string name="email">Email</string>
+        <string name="delete_account">Delete Account</string>
+
+    //crowdfunding.xml
+        <string name="crowdfunding">Crowdfunding</string>
+        <string name="ongoing_projects">Ongoing Crowdfunding Projects</string>
+
+    //dashboard.xml
+        <string name="dashboard">Dashboard</string>
+        <string name="create_project2">Create Project</string>
+        <string name="crowdfunding_platform">Crowdfunding \nPlatform</string>
+        <string name="recent_activities">Recent Activities</string>
+
+    //discussion_forum.xml
+        <string name="whats_on_your_mind_hint">What\'s on your mind?</string>
+        <string name="post">Post</string>
+        <string name="favorite">Favorite</string>
+
+    //profile.xml
+        <string name="my_profile">My Profile</string>
+        <string name="loading">Loading...</string>
+        <string name="edit_profile2">Edit Profile</string>
+        <string name="favorites">Favorites</string>
+        <string name="subscription">Subscription</string>
+        <string name="account2">Account</string>
+        <string name="log_out">Log Out</string>
+
+
+
+
+
+
+
+    <string-array name="environmental_data_items">
+        <item>Environmental Pollution</item>
+        <item>Ecosystem and Biodiversity</item>
+        <item>Deforestation &amp; Desertification</item>
+        <item>Sustainable Development Goals</item>
+        <item>Waste Management</item>
+        <item>Energy Conservation</item>
+        <item>Responsible Consumption Production</item>
+        <item>Climate Change</item>
+    </string-array>
 </resources>

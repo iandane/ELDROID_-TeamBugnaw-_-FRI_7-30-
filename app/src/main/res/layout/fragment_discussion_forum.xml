@@ -84,7 +84,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/post"
                     android:gravity="start|top"
-                    android:hint="What's on your mind?"
+                    android:hint="@string/whats_on_your_mind_hint"
                     android:inputType="textMultiLine"
                     android:maxLines="3"
                     android:padding="10dp"
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="10dp"
                     android:layout_marginTop="8dp"
-                    android:text="Post"
+                    android:text="@string/post"
                     android:onClick="onPostButtonClick"
                     android:layout_toRightOf="@id/imageAdd"
                     />

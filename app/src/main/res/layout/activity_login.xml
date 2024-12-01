@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="EcoConnect"
+            android:text="@string/ecoconnect"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="20dp"
@@ -34,7 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
+        android:text="@string/welcome"
         android:textSize="35dp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -44,7 +44,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter Your Email &amp; Password"
+        android:text="@string/enter_email_password"
         android:textSize="20dp"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -71,7 +71,7 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:hint="Email Address"
+                android:hint="@string/email_hint"
                 android:textColor="@color/black"
                 android:layout_marginTop="30dp"
                 android:paddingLeft="10dp"
@@ -83,7 +83,7 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:hint="Password"
+                android:hint="@string/password_hint"
                 android:textColor="@color/black"
                 android:inputType="textPassword"
                 android:layout_marginTop="30dp"
@@ -101,7 +101,7 @@
                     android:id="@+id/forgotPass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Forgot Password?"
+                    android:text="@string/forgot_password"
                     android:layout_marginRight="25dp"
                     android:textSize="15sp"
                     android:layout_alignParentEnd="true"/>
@@ -110,7 +110,7 @@
                     android:id="@+id/loginBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="LOGIN"
+                    android:text="@string/login"
                     android:textSize="15sp"
                     android:textColor="@color/white"
                     android:background="@drawable/rounded_button"
@@ -133,7 +133,7 @@
                     android:drawableStart="@drawable/google"
                     android:paddingStart="50dp"
                     android:paddingEnd="45dp"
-                    android:text="Sign in with Google"
+                    android:text="@string/sign_in_google"
                     android:layout_below="@+id/loginBtn"/>
 
                 <RelativeLayout
@@ -148,14 +148,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="100dp"
                         android:textColor="@color/black"
-                        android:text="Don’t have an account?" />
+                        android:text="@string/dont_have_account"/>
 
                     <TextView
                         android:id="@+id/createAcc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/lightGreen"
-                        android:text=" Sign Up"
+                        android:text="@string/sign_up"
                         android:textStyle="bold"
                         android:layout_toRightOf="@id/alrdyReg"/>
                 </RelativeLayout>

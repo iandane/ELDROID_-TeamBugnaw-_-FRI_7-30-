@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/radius_button"
         android:backgroundTint="@color/lightgrey"
-        app:queryHint="Search ..."
+        app:queryHint="@string/search_hint"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

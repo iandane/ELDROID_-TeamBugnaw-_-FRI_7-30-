@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/inter_bold"
-            android:text="My Profile"
+            android:text="@string/my_profile"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginStart="8dp"
@@ -74,7 +74,7 @@
                 android:id="@+id/fullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Loading..."
+                android:text="@string/loading"
                 android:textSize="18sp"
                 android:textColor="@color/black" />
 
@@ -82,7 +82,7 @@
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Loading..."
+                android:text="@string/loading"
                 android:textSize="14sp"
                 android:textColor="@color/black" />
 
@@ -90,7 +90,7 @@
                 android:id="@+id/editProfileBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Profile"
+                android:text="@string/edit_profile2"
                 android:textColor="@color/black"
                 android:backgroundTint="@color/lightGreen"
                 android:layout_marginTop="8dp"/>
@@ -137,7 +137,7 @@
                 android:layout_toEndOf="@id/heart"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/inter_bold"
-                android:text="Favorites"
+                android:text="@string/favorites"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:gravity="center"/>
@@ -181,7 +181,7 @@
                 android:layout_toEndOf="@id/sub"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/inter_bold"
-                android:text="Subscription"
+                android:text="@string/subscription"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:gravity="center"/>
@@ -222,7 +222,7 @@
                 android:layout_toEndOf="@id/account"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/inter_bold"
-                android:text="Account"
+                android:text="@string/account"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:gravity="center"/>
@@ -264,7 +264,7 @@
                 android:layout_toEndOf="@id/logout"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/inter_bold"
-                android:text="Log Out"
+                android:text="@string/log_out"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:gravity="center"/>

@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_bold"
-            android:text="Project Details"
+            android:text="@string/project_details"
             android:textSize="30dp"
             android:textColor="@color/black"
             android:layout_marginLeft="5dp" />
@@ -63,7 +63,7 @@
             android:layout_below="@+id/projectImage"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/inter_bold"
-            android:text="Title"
+            android:text="@string/title2"
             android:textColor="@color/black"
             android:textSize="20dp" />
 
@@ -80,10 +80,11 @@
             android:id="@+id/donate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Donate"
-            android:layout_marginLeft="73dp"
             android:layout_below="@id/donateBtn"
-            android:textColor="@color/black"/>
+            android:layout_marginLeft="73dp"
+            android:layout_marginTop="-4dp"
+            android:text="@string/donate"
+            android:textColor="@color/black" />
 
         <ImageView
             android:id="@+id/moneyGoalImage"
@@ -99,11 +100,12 @@
             android:id="@+id/totalMoneyGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Money Goal"
-            android:layout_marginLeft="50dp"
             android:layout_below="@id/moneyGoalImage"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-4dp"
             android:layout_toRightOf="@+id/donate"
-            android:textColor="@color/black"/>
+            android:text="@string/total_money_goal"
+            android:textColor="@color/black" />
 
     </RelativeLayout>
 
@@ -119,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Details"
+            android:text="@string/details"
             android:textSize="25dp"
             android:textColor="@color/black"
             android:fontFamily="@font/inter_bold"/>
@@ -131,7 +133,7 @@
             android:id="@+id/descriptionTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description: "
+            android:text="@string/description2"
             android:fontFamily="@font/inter"
             android:textColor="@color/black"
             android:textSize="18dp"
@@ -141,7 +143,7 @@
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea."
+            android:text="@string/lorem_ipsum"
             android:layout_toRightOf="@id/descriptionTxtView"
             android:justificationMode="inter_word"
             android:layout_marginTop="3dp"
@@ -158,7 +160,7 @@
                 android:id="@+id/moneyGoalTxtView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Money Goal: "
+                android:text="@string/money_goal2"
                 android:fontFamily="@font/inter"
                 android:textColor="@color/black"
                 android:textSize="18dp"
@@ -168,35 +170,9 @@
                 android:id="@+id/moneyGoal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="P 1000000"
+                android:text="@string/goal_amount"
                 android:layout_toRightOf="@id/moneyGoalTxtView"
                 android:justificationMode="inter_word"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/inter"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-            <TextView
-                android:id="@+id/envDataTxtView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Environmental Data: "
-                android:fontFamily="@font/inter"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:layout_marginLeft="20dp"/>
-
-            <TextView
-                android:id="@+id/envData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Waste Management"
-                android:layout_toRightOf="@id/envDataTxtView"
                 android:layout_marginTop="3dp"
                 android:layout_marginRight="10dp"
                 android:textColor="@color/black"
@@ -211,7 +187,7 @@
                 android:id="@+id/endDateTxtView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="End Date: "
+                android:text="@string/end_date"
                 android:fontFamily="@font/inter"
                 android:textColor="@color/black"
                 android:textSize="18dp"
@@ -221,7 +197,7 @@
                 android:id="@+id/endDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="05/30/2024"
+                android:text="@string/date"
                 android:layout_toRightOf="@id/endDateTxtView"
                 android:justificationMode="inter_word"
                 android:layout_marginTop="3dp"
