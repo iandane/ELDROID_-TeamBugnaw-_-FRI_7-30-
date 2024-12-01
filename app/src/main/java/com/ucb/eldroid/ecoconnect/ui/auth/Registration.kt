@@ -8,10 +8,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.ucb.eldroid.ecoconnect.R
 import com.ucb.eldroid.ecoconnect.data.ApiService
 import com.ucb.eldroid.ecoconnect.data.models.User
+import com.ucb.eldroid.ecoconnect.viewmodel.auth.RegisterViewModel
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,6 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
 class Registration : AppCompatActivity() {
+    private val registerViewModel: RegisterViewModel by viewModels()
+
     var editTextFirstName: EditText? = null
     var editTextLastName: EditText? = null
     var editTextEmail: EditText? = null
@@ -46,62 +50,40 @@ class Registration : AppCompatActivity() {
             val intent = Intent(this@Registration, Login::class.java)
             startActivity(intent)
         }
-    }
 
-    fun regUser() {
-        val firstName = editTextFirstName!!.text.toString()
-        val lastName = editTextLastName!!.text.toString()
-        val email = editTextEmail!!.text.toString()
-        val password = editTextPassword!!.text.toString()
-        val passwordConfirmation = editTextRepassword!!.text.toString()
-
-        if (password != passwordConfirmation) {
-            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
-            return
+        // Observe LiveData for validation errors
+        registerViewModel.validationError.observe(this) { errorMessage ->
+            if (errorMessage != null) {
+                Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+            }
         }
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.15:8000/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        // Observe LiveData for registration success
+        registerViewModel.registrationSuccess.observe(this) { success ->
+            if (success) {
+                Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show()
 
-        val apiService = retrofit.create(ApiService::class.java)
-        val user = User(firstName, lastName, email, password, passwordConfirmation)
-
-        val call = apiService.postRegister(user)
-        call!!.enqueue(object : Callback<ResponseBody?> {
-            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@Registration, "Registration Successful", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    try {
-                        val errorBody = response.errorBody()!!.string()
-                        Log.e("RegistrationError", errorBody)
-                        Toast.makeText(
-                            this@Registration,
-                            "Registration Failed: $errorBody",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                        Toast.makeText(
-                            this@Registration,
-                            "Registration Failed: Unable to parse error",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }
+                // Navigate to the Login activity
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+                finish()
             }
+        }
 
-            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                Log.e("RegistrationFailure", t.message!!)
-                Toast.makeText(
-                    this@Registration,
-                    "Registration Failed: " + t.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        })
+        // Observe LiveData for registration failure
+        registerViewModel.registrationError.observe(this) { errorMessage ->
+            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun regUser() {
+        val firstName = editTextFirstName!!.text.toString().trim()
+        val lastName = editTextLastName!!.text.toString().trim()
+        val email = editTextEmail!!.text.toString().trim()
+        val password = editTextPassword!!.text.toString().trim()
+        val passwordConfirmation = editTextRepassword!!.text.toString().trim()
+
+        // Call the registerUser method in the ViewModel
+        registerViewModel.registerUser(firstName, lastName, email, password, passwordConfirmation)
     }
 }

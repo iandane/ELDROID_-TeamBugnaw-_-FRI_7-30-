@@ -12,12 +12,12 @@ interface ApiService {
     @POST("/api/register")
     fun postRegister(
         @Body user: User?
-    ): Call<ResponseBody?>?
+    ): Call<ResponseBody?>
 
     @POST("/api/login")
     fun postLogin(
         @Body loginRequest: LoginRequest?
-    ): Call<ResponseBody?>?
+    ): Call<ResponseBody?>
 
     @POST("/api/list")
     fun postList(
