@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.ucb.eldroid.ecoconnect.data.ApiService
 import com.ucb.eldroid.ecoconnect.data.models.User
+import com.ucb.eldroid.ecoconnect.utils.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,10 +19,11 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     val userData: MutableLiveData<User?> get() = _userData
 
     fun fetchUserData(token: String) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.0.33:8000/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        val retrofit = RetrofitClient.instance
+        if (retrofit == null) {
+            Log.e("ProfileViewModel", "Failed to initialize network client")
+            return
+        }
 
         val apiService = retrofit.create(ApiService::class.java)
 

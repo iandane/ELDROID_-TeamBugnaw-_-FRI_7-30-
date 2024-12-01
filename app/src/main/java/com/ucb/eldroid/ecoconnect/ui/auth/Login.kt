@@ -10,12 +10,14 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.ucb.eldroid.ecoconnect.R
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.BottomNavigationBar
 import com.ucb.eldroid.ecoconnect.viewmodel.auth.LoginViewModel
+import com.ucb.eldroid.ecoconnect.viewmodel.auth.LoginViewModelFactory
 
 class Login : AppCompatActivity() {
-    private val loginViewModel: LoginViewModel by viewModels()
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,17 @@ class Login : AppCompatActivity() {
         val loginBtn = findViewById<Button>(R.id.loginBtn)
         val emailField = findViewById<EditText>(R.id.username)
         val passwordField = findViewById<EditText>(R.id.password)
+        val sharedPreferences = getSharedPreferences("AuthPreferences", MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        val factory = LoginViewModelFactory(application, sharedPreferences)
+        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
 
+
+        if (isLoggedIn) {
+            // If the user is already logged in, open BottomNavigationBar
+            openBottomNav()
+            return
+        }
         // Observing errors for validation
         loginViewModel.emailError.observe(this) { errorMessage ->
             if (errorMessage != null) {

@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ucb.eldroid.ecoconnect.R
+import com.ucb.eldroid.ecoconnect.ui.auth.Login
 import com.ucb.eldroid.ecoconnect.viewmodel.auth.ProfileViewModel
 
 class ProfileFragment : Fragment() {
@@ -22,6 +23,7 @@ class ProfileFragment : Fragment() {
     private lateinit var nameTextView: TextView
     private lateinit var emailTextView: TextView
     private val profileViewModel: ProfileViewModel by viewModels()
+    private var logoutButton: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +37,12 @@ class ProfileFragment : Fragment() {
         favoriteButton = view.findViewById(R.id.favbtn)
         nameTextView = view.findViewById(R.id.fullName)
         emailTextView = view.findViewById(R.id.email)
+        logoutButton = view.findViewById(R.id.logoutbutton)
 
+        // Set up logout button click listener safely
+        logoutButton?.setOnClickListener {
+            logout()
+        }
         setupButtonListeners()
         fetchAndDisplayUserInfo()
 
@@ -82,5 +89,22 @@ class ProfileFragment : Fragment() {
             emailTextView.text = user.email
             Log.d("ProfileFragment", "User: $fullName, Email: ${user.email}")
         }
+    }
+    private fun logout() {
+        val sharedPreferences = requireContext().getSharedPreferences("AuthPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Clear all user-related data
+        editor.putBoolean("isLoggedIn", false) // Clear login state
+        editor.remove("USER_FIRST_NAME") // Clear user data
+        editor.remove("USER_LAST_NAME")
+        editor.remove("USER_EMAIL")
+        editor.remove("AUTH_TOKEN") // Clear token
+        editor.apply()
+
+        // Navigate to Login screen
+        val intent = Intent(requireContext(), Login::class.java)
+        startActivity(intent)
+        requireActivity().finish()  // Close the current activity
     }
 }

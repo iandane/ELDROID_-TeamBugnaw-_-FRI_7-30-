@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.ucb.eldroid.ecoconnect.data.ApiService
 import com.ucb.eldroid.ecoconnect.data.models.User
+import com.ucb.eldroid.ecoconnect.utils.RetrofitClient
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -62,10 +63,11 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
             return
         }
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.0.33:8000/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        val retrofit = RetrofitClient.instance
+        if (retrofit == null) {
+            _registrationError.postValue("Failed to initialize network client")
+            return
+        }
 
         val apiService = retrofit.create(ApiService::class.java)
         val user = User(firstName, lastName, email, password, passwordConfirmation)

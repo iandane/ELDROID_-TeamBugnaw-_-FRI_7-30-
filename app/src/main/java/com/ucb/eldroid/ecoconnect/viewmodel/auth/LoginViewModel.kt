@@ -2,6 +2,7 @@ package com.ucb.eldroid.ecoconnect.viewmodel.auth
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,14 +10,14 @@ import com.google.gson.Gson
 import com.ucb.eldroid.ecoconnect.data.ApiService
 import com.ucb.eldroid.ecoconnect.data.models.LoginRequest
 import com.ucb.eldroid.ecoconnect.data.models.User
+import com.ucb.eldroid.ecoconnect.utils.RetrofitClient
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
+class LoginViewModel(application: Application, private val sharedPreferences: SharedPreferences) : AndroidViewModel(application) {
+
     private val _loginResult = MutableLiveData<Boolean>()
     val loginResult: LiveData<Boolean> get() = _loginResult
 
@@ -50,10 +51,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun login(email: String, password: String) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.0.33:8000/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        val retrofit = RetrofitClient.instance
+        if (retrofit == null) {
+            _loginResult.postValue(false)
+            _errorMessage.postValue("Failed to initialize network client")
+            return
+        }
 
         val apiService = retrofit.create(ApiService::class.java)
         val loginRequest = LoginRequest(email, password)
@@ -100,6 +103,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         editor.putString("USER_LAST_NAME", user.lastName)
         editor.putString("USER_EMAIL", user.email)
         editor.putString("AUTH_TOKEN", user.token) // Store the token
+        editor.putBoolean("isLoggedIn", true) // Update login state
         editor.apply()
     }
+
+    fun isLoggedIn(): Boolean {
+        return sharedPreferences.getBoolean("isLoggedIn", false)
+    }
 }
+
