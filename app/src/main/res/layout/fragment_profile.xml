@@ -90,7 +90,7 @@
                 android:id="@+id/editProfileBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Profile"
+                android:text="@string/edit_profile2"
                 android:textColor="@color/black"
                 android:backgroundTint="@color/lightGreen"
                 android:layout_marginTop="8dp"/>

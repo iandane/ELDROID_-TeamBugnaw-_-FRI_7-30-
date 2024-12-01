@@ -65,9 +65,9 @@
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="reenter_password">Re-enter Password</string>
-    <string name="role">Role:</string>
-    <string name="client">Client</string>
-    <string name="user">User</string>
+    <string name="register">REGISTER</string>
+
+    //search.xml
     <string name="search_hint">Search ...</string>
 
     //account_info.xml
@@ -117,15 +117,4 @@
         <string name="world_environment_day">World Environment Day!</string>
         <string name="post">POST</string>
 
-
-    <string-array name="environmental_data_items">
-        <item>Environmental Pollution</item>
-        <item>Ecosystem and Biodiversity</item>
-        <item>Deforestation &amp; Desertification</item>
-        <item>Sustainable Development Goals</item>
-        <item>Waste Management</item>
-        <item>Energy Conservation</item>
-        <item>Responsible Consumption Production</item>
-        <item>Climate Change</item>
-    </string-array>
 </resources>
