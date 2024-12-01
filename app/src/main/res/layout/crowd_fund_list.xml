@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/crowdfundCard"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:padding="16dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/card_crowd_fund">
+
+        <TextView
+            android:id="@+id/projectTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Help us save the planet!"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/backgGreen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/createdByTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Created by: "
+            android:textColor="@color/backgGreen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/projectTitle"/>
+
+        <TextView
+            android:id="@+id/projectCreatedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Swathi"
+            android:textStyle="bold"
+            android:textColor="@color/backgGreen"
+            app:layout_constraintBaseline_toBaselineOf="@id/createdByTextView"
+            app:layout_constraintStart_toEndOf="@id/createdByTextView"/>
+
+        <TextView
+            android:id="@+id/projectMoneyGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="₱1M"
+            android:textSize="20sp"
+            android:textColor="@color/backgGreen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createdByTextView"/>
+
+        <TextView
+            android:id="@+id/goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Goal"
+            android:textSize="20sp"
+            android:textColor="@color/backgGreen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/projectMoneyGoal"/>
+
+        <Button
+            android:id="@+id/donateBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donate"
+            android:textSize="20dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/projectCreatedBy"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

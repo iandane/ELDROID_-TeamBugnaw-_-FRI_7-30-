@@ -61,7 +61,7 @@ class Registration : AppCompatActivity() {
         }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.15:8000/")
+            .baseUrl("http://192.168.1.228:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
