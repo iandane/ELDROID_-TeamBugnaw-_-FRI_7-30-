@@ -17,17 +17,18 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_bold"
             android:textStyle="bold"
-            android:text="@string/dashboard"
+            android:text="Dashboard"
             android:textSize="30dp"
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/dash_nav"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="280dp"
         android:orientation="vertical"
         android:background="@drawable/dashboard_border">
 
@@ -40,7 +41,7 @@
             >
 
             <RelativeLayout
-                android:id="@+id/createProjBox"
+                android:id="@+id/envDataBox"
                 android:layout_width="155dp"
                 android:layout_height="175dp">
 
@@ -50,7 +51,7 @@
                     android:background="@drawable/dashboard_nav"/>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/CreateProjCardview"
+                    android:id="@+id/envDataCardView"
                     android:layout_width="150dp"
                     android:layout_height="170dp"
                     app:cardBackgroundColor="#F1EAEA"
@@ -59,14 +60,14 @@
                     android:background="@drawable/dashboard_nav">
 
                     <TextView
-                        android:id="@+id/createProjBtn"
+                        android:id="@+id/envDataBtn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="17dp"
-                        android:drawableTop="@drawable/createproj"
-                        android:text="@string/create_project"
+                        android:padding="10dp"
+                        android:drawableTop="@drawable/envdata"
+                        android:text="Environmental Data"
                         android:fontFamily="@font/inter_bold"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         android:textAllCaps="false"
                         android:gravity="center"
                         android:textColor="@color/black"/>
@@ -78,7 +79,7 @@
                 android:layout_width="158dp"
                 android:layout_height="175dp"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/createProjBox">
+                android:layout_toRightOf="@id/envDataBox">
 
                 <View
                     android:layout_width="wrap_content"
@@ -100,7 +101,7 @@
                         android:layout_height="match_parent"
                         android:padding="10dp"
                         android:drawableTop="@drawable/crowdfund"
-                        android:text="@string/crowdfunding_platform"
+                        android:text="Crowdfunding \nPlatform"
                         android:fontFamily="@font/inter_bold"
                         android:textSize="12sp"
                         android:textAllCaps="false"
@@ -111,19 +112,46 @@
             </RelativeLayout>
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp">
+
+            <Button
+                android:id="@+id/createProj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dashboard_nav"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:drawableStart="@drawable/add"
+                android:textSize="20dp"
+                android:textAllCaps="false"
+                android:paddingStart="55dp"
+                android:paddingEnd="40dp"
+                android:text="Create Project"/>
+        </LinearLayout>
+
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/rec_activities_border"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@id/createProj"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="@string/recent_activities"
+            android:text="Recent Activities"
             android:textSize="20dp"
             android:textColor="@color/white"/>
 
