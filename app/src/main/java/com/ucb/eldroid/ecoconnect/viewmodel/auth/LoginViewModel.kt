@@ -111,4 +111,3 @@ class LoginViewModel(application: Application, private val sharedPreferences: Sh
         return sharedPreferences.getBoolean("isLoggedIn", false)
     }
 }
-
