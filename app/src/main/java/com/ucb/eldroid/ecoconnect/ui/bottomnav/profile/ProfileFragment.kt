@@ -49,6 +49,11 @@ class ProfileFragment : Fragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        fetchAndDisplayUserInfo()
+    }
+
     private fun setupButtonListeners() {
         accountInfoButton.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
@@ -90,6 +95,7 @@ class ProfileFragment : Fragment() {
             Log.d("ProfileFragment", "User: $fullName, Email: ${user.email}")
         }
     }
+
     private fun logout() {
         val sharedPreferences = requireContext().getSharedPreferences("AuthPreferences", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()

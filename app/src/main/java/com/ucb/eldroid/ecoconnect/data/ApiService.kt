@@ -8,12 +8,13 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface ApiService {
     @POST("/api/register")
@@ -37,8 +38,6 @@ interface ApiService {
         @Header("Authorization") authToken: String
     ): Call<User>
 
-    // Send the project to the server with the token as a header
-
     @Multipart
     @POST("/api/projects")
     fun createProject(
@@ -49,4 +48,11 @@ interface ApiService {
         @Part("deadline") deadline: RequestBody,
         @Part image: MultipartBody.Part? // Image file as a part
     ): Call<Project>
+
+    @PUT("/api/user/{token}")
+    fun updateUserProfile(
+        @Header("Authorization") token: String,
+        @Path("token") tokenParam: String,
+        @Body userProfile: Map<String, String>
+    ): Call<ResponseBody>
 }
