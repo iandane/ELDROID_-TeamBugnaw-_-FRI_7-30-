@@ -75,9 +75,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginRight="20dp"
-                android:padding="3dp"
+                android:padding="10dp"
                 android:maxLength="35"
-                android:background="@drawable/project_border" />
+                android:background="@drawable/project_border"
+                android:inputType="textCapWords" />
+
         </LinearLayout>
 
         <RelativeLayout
@@ -107,7 +109,9 @@
                 android:layout_height="100dp"
                 android:hint="@string/project_hint"
                 android:layout_below="@id/descriptionTxtView"
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:inputType="textCapWords"
+                android:padding="5dp"/>
 
         </RelativeLayout>
 

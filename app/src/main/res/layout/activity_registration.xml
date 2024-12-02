@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/create_new_account"
+                android:text="Create New Account"
                 android:textColor="@color/white"
                 android:textSize="30dp" />
 
@@ -42,14 +42,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="100dp"
                     android:textColor="@color/white"
-                    android:text="@string/already_registered" />
+                    android:text="Already registered?" />
 
                 <TextView
                     android:id="@+id/loginTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/lightGreen"
-                    android:text="@string/login_here"
+                    android:text=" Log in Here"
                     android:textStyle="bold"
                     android:layout_toRightOf="@id/alrdyReg"/>
 
@@ -74,7 +74,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/first_name"
+                    android:text="First Name"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"/>
@@ -86,12 +86,12 @@
                     android:textColor="@color/black"
                     android:background="@drawable/signup_border"
                     android:padding="10dp"
-                    android:inputType="textCapWords"/>
+                    android:inputType="textCapSentences" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/last_name"
+                    android:text="Last Name"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"/>
@@ -108,7 +108,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/email_address"
+                    android:text="Email Address"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"
@@ -125,7 +125,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/password"
+                    android:text="Password"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"
@@ -143,7 +143,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/reenter_password"
+                    android:text="Re-enter Password"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"
@@ -165,7 +165,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/rounded_button"
                     android:layout_marginTop="10dp"
-                    android:text="@string/register"
+                    android:text="Register"
                     android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
