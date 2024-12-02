@@ -18,7 +18,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ucb.eldroid.ecoconnect.R
 import com.ucb.eldroid.ecoconnect.data.ApiService
+import com.ucb.eldroid.ecoconnect.data.models.Profile
 import com.ucb.eldroid.ecoconnect.data.models.Project
+import com.ucb.eldroid.ecoconnect.data.models.ProjectUser
 import com.ucb.eldroid.ecoconnect.ui.auth.Login
 import com.ucb.eldroid.ecoconnect.utils.RetrofitClient
 import okhttp3.ResponseBody
@@ -99,13 +101,19 @@ class CreateProject : AppCompatActivity() {
         val deadline = findViewById<TextView>(R.id.deadlineDateTextView).text.toString()
         val imagePath = imageUri?.let { getImagePathFromUri(it) } // Use the selected image URI
 
+
+        // Example data for ProjectUser
+        val profile = Profile(picture = "profile_image_url")
+        val projectUser = ProjectUser(first_name = "John", last_name = "Doe", profile = profile)
+
         val project = Project(
             projectId = UUID.randomUUID().toString(), // Random UUID for projectId
             title = title,
             description = description,
             goalAmount = goalAmount,
             deadline = deadline,
-            imagePath = imagePath
+            imagePath = imagePath,
+            projectUser = projectUser // Pass projectUser
         )
 
         // Send the project to the backend

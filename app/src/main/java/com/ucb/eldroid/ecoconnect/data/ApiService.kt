@@ -3,6 +3,7 @@ package com.ucb.eldroid.ecoconnect.data
 import com.ucb.eldroid.ecoconnect.data.models.LoginRequest
 import com.ucb.eldroid.ecoconnect.data.models.Project
 import com.ucb.eldroid.ecoconnect.data.models.User
+import com.ucb.eldroid.ecoconnect.ui.adapters.Post
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -40,4 +41,9 @@ interface ApiService {
         @Body project: Project,
         @Header("Authorization") authHeader: String
     ): Call<ResponseBody>
+
+    @GET("/api/projects")
+    fun getProjects(
+        @Header("Authorization") authToken: String
+    ): Call<List<Post>>
 }

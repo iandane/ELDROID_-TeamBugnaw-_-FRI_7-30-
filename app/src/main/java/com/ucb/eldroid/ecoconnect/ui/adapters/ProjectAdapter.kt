@@ -11,43 +11,47 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ucb.eldroid.ecoconnect.R
+import com.ucb.eldroid.ecoconnect.data.models.Project
 import java.net.URL
 
-class NewsFeedAdapter(private val context: Context, private val postList: List<Post>) :
-    RecyclerView.Adapter<NewsFeedAdapter.NewsFeedViewHolder>() {
+class ProjectAdapter(private val projects: List<Project>) :
+    RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder>() {
 
-    class NewsFeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val profileImageView: ImageView = itemView.findViewById(R.id.profileimageView)
-        val usernameTextView: TextView = itemView.findViewById(R.id.username)
-        val contentTextView: TextView = itemView.findViewById(R.id.postcontent)
+        val username: TextView = itemView.findViewById(R.id.username)
+        val postContent: TextView = itemView.findViewById(R.id.postcontent)
         val projectImageView: ImageView = itemView.findViewById(R.id.imageView2)
         val heartImageView: ImageView = itemView.findViewById(R.id.heart)
         val commentsRecyclerView: RecyclerView = itemView.findViewById(R.id.commentRecyclerView)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsFeedViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.newsfeed_list, parent, false)
-        return NewsFeedViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.newsfeed_list, parent, false)
+        return ProjectViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: NewsFeedViewHolder, position: Int) {
-        val post = postList[position]
-        holder.contentTextView.text = post.content
-        holder.usernameTextView.text = post.username
+    override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
+        val project = projects[position]
+        holder.username.text = "${project.projectUser.first_name} ${project.projectUser.last_name}"
+        holder.postContent.text = project.description
 
-        // Load images without Glide
-        val profileImageUrl = post.profileImage
-        val projectImageUrl = post.projectImage
-        if (profileImageUrl != null) {
-            loadImageFromUrl(holder.profileImageView, profileImageUrl)
-        }
+        // Load images without using Glide
+        val projectImageUrl = project.imagePath
+        val profileImageUrl = project.projectUser.profile?.picture
         if (projectImageUrl != null) {
             loadImageFromUrl(holder.projectImageView, projectImageUrl)
         }
+        if (profileImageUrl != null) {
+            loadImageFromUrl(holder.profileImageView, profileImageUrl)
+        }
+
+        // Handle comments and heart reactions here
+        // TODO: Set up comments RecyclerView and heart reactions
     }
 
     override fun getItemCount(): Int {
-        return postList.size
+        return projects.size
     }
 
     // Function to load image from URL
