@@ -5,7 +5,6 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
-import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -40,13 +39,13 @@ class CreateProject : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_project)
 
-        val backBtn = findViewById<ImageView>(R.id.backBtn)
         titleField = findViewById(R.id.titleProject)
         descriptionField = findViewById(R.id.projectDescription)
         moneyGoalField = findViewById(R.id.moneyGoal)
         deadlineField = findViewById(R.id.deadlineDateTextView)
         imageView = findViewById(R.id.addImage)
         createButton = findViewById(R.id.publishButton)
+        val backBtn = findViewById<ImageView>(R.id.backBtn)
 
         backBtn.setOnClickListener {
             val intent = Intent(this, BottomNavigationBar::class.java)

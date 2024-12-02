@@ -45,8 +45,8 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part("title") title: RequestBody,
         @Part("description") description: RequestBody,
-        @Part image: MultipartBody.Part?,
         @Part("money_goal") moneyGoal: RequestBody,
         @Part("deadline") deadline: RequestBody,
-    ): Call<ResponseBody>
+        @Part image: MultipartBody.Part? // Image file as a part
+    ): Call<Project>
 }
