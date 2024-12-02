@@ -121,6 +121,7 @@ class CreateProject : AppCompatActivity() {
         call?.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 if (response.isSuccessful) {
+
                     Toast.makeText(this@CreateProject, "Project successfully created!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@CreateProject, "Failed to create project", Toast.LENGTH_SHORT).show()
