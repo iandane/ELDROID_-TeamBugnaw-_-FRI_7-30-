@@ -4,155 +4,131 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
 import com.ucb.eldroid.ecoconnect.R
-import com.ucb.eldroid.ecoconnect.data.ApiService
-import com.ucb.eldroid.ecoconnect.data.models.Project
-import com.ucb.eldroid.ecoconnect.ui.auth.Login
-import com.ucb.eldroid.ecoconnect.utils.RetrofitClient
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.Calendar
-import java.util.UUID
+import com.ucb.eldroid.ecoconnect.ui.bottomnav.BottomNavigationBar
+import com.ucb.eldroid.ecoconnect.viewmodel.auth.ProjectViewModel
+import java.util.*
 
 class CreateProject : AppCompatActivity() {
 
-    private var imageUri: Uri? = null // To store selected image URI
+    private val projectViewModel: ProjectViewModel by viewModels()
+
+    private lateinit var titleField: EditText
+    private lateinit var descriptionField: EditText
+    private lateinit var moneyGoalField: EditText
+    private lateinit var deadlineField: TextView
+    private lateinit var imageView: ImageView
+    private lateinit var createButton: Button
+
+    private var projectImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_project)
 
-        val deadlineDateTextView = findViewById<TextView>(R.id.deadlineDateTextView)
+        titleField = findViewById(R.id.titleProject)
+        descriptionField = findViewById(R.id.projectDescription)
+        moneyGoalField = findViewById(R.id.moneyGoal)
+        deadlineField = findViewById(R.id.deadlineDateTextView)
+        imageView = findViewById(R.id.addImage)
+        createButton = findViewById(R.id.publishButton)
+        val backBtn = findViewById<ImageView>(R.id.backBtn)
 
-        deadlineDateTextView.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val datePickerDialog = DatePickerDialog(
-                this@CreateProject,
-                { view, year, monthOfYear, dayOfMonth ->
-                    val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
-                    deadlineDateTextView.text = selectedDate
-                },
-                calendar[Calendar.YEAR],
-                calendar[Calendar.MONTH],
-                calendar[Calendar.DAY_OF_MONTH]
-            )
-            datePickerDialog.show()
+        backBtn.setOnClickListener {
+            val intent = Intent(this, BottomNavigationBar::class.java)
+            startActivity(intent)
+            finish()
         }
 
-        // Create project button click action
-        val createProjectButton = findViewById<Button>(R.id.publishButton)
-        createProjectButton.setOnClickListener {
-            val token = getAuthToken()
-            if (token.isNullOrEmpty()) {
-                // Prompt the user to log in if token is not available
-                Toast.makeText(this, "Please log in to create a project", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, Login::class.java)) // Navigate to login screen
-                finish()
-            } else {
-                createProject(token)  // Pass token to create project if authenticated
+        createButton.setOnClickListener {
+            val title = titleField.text.toString().trim()
+            val description = descriptionField.text.toString().trim()
+            val moneyGoal = moneyGoalField.text.toString().toDoubleOrNull() ?: 0.0
+            val deadline = deadlineField.text.toString().trim()
+
+            // Format the deadline date
+            val inputFormat = SimpleDateFormat("M/d/yyyy", Locale.US)
+            val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+
+            val formattedDeadline: String
+            try {
+                val date = inputFormat.parse(deadline) // Convert the input date string to a Date object
+                formattedDeadline = outputFormat.format(date) // Format the Date object into the correct format
+            } catch (e: Exception) {
+                Toast.makeText(this, "Invalid date format", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Log the formatted date to verify
+            Log.d("Formatted Date", formattedDeadline) // Output: 2024-12-02
+            // Call ViewModel to create the project
+            projectViewModel.createProject(title, description, moneyGoal, deadline, projectImageUri)
+        }
+
+        // Observe project creation success
+        projectViewModel.projectCreationSuccess.observe(this) { success ->
+            if (success) {
+                Toast.makeText(this, "Project Created Successfully", Toast.LENGTH_SHORT).show()
+                finish()  // Close the activity after creation
             }
         }
 
-        // Add an image picker button (Assuming you have a button for this)
-        val imagePickerButton = findViewById<ImageView>(R.id.addImage)
-        imagePickerButton.setOnClickListener {
-            pickImage()
+        // Observe validation and error messages
+        projectViewModel.validationError.observe(this) { error ->
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
-    }
 
-    private fun pickImage() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, IMAGE_PICK_REQUEST_CODE)
+        projectViewModel.projectCreationError.observe(this) { error ->
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+        }
+
+        imageView.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(intent, IMAGE_PICK_REQUEST)
+        }
+
+        deadlineField.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                    deadlineField.text = selectedDate
+                },
+                year, month, day
+            )
+            datePickerDialog.show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_REQUEST_CODE) {
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_REQUEST) {
             data?.data?.let { uri ->
-                imageUri = uri
-                // You can update your UI here to display the selected image
-                // For example, set it to an ImageView
-                val imageView = findViewById<ImageView>(R.id.addImage)
-                imageView.setImageURI(uri)
+                projectImageUri = uri
+                imageView.setImageURI(uri)  // Display the image in the ImageView
             }
         }
-    }
-
-    private fun createProject(token: String) {
-        val title = findViewById<EditText>(R.id.titleProject).text.toString()
-        val description = findViewById<EditText>(R.id.projectDescription).text.toString()
-        val goalAmount = findViewById<EditText>(R.id.moneyGoal).text.toString().toDoubleOrNull() ?: 0.0
-        val deadline = findViewById<TextView>(R.id.deadlineDateTextView).text.toString()
-        val imagePath = imageUri?.let { getImagePathFromUri(it) } // Use the selected image URI
-
-        val project = Project(
-            projectId = UUID.randomUUID().toString(), // Random UUID for projectId
-            title = title,
-            description = description,
-            goalAmount = goalAmount,
-            deadline = deadline,
-            imagePath = imagePath
-        )
-
-        // Send the project to the backend
-        sendProjectToBackend(project, token)
-    }
-
-    private fun sendProjectToBackend(project: Project, token: String) {
-        val retrofit = RetrofitClient.instance
-        val apiService = retrofit?.create(ApiService::class.java)
-
-        // Pass the token as part of the Authorization header
-        val call = apiService?.createProject(project, "Bearer $token")
-        call?.enqueue(object : Callback<ResponseBody?> {
-            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
-                if (response.isSuccessful) {
-
-                    Toast.makeText(this@CreateProject, "Project successfully created!", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@CreateProject, "Failed to create project", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                Toast.makeText(this@CreateProject, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    private fun getImagePathFromUri(uri: Uri?): String? {
-        // Get image path from URI (if you have image selection functionality implemented)
-        return uri?.let {
-            val projection = arrayOf(MediaStore.Images.Media.DATA)
-            val cursor = contentResolver.query(uri, projection, null, null, null)
-            cursor?.use {
-                it.moveToFirst()
-                val columnIndex = it.getColumnIndex(projection[0])
-                return it.getString(columnIndex)
-            }
-        }
-    }
-
-    private fun getAuthToken(): String? {
-        val sharedPreferences = getSharedPreferences("AuthPreferences", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("AUTH_TOKEN", null) // Retrieve the stored token
     }
 
     companion object {
-        private const val IMAGE_PICK_REQUEST_CODE = 1000
+        const val IMAGE_PICK_REQUEST = 1001
     }
 }

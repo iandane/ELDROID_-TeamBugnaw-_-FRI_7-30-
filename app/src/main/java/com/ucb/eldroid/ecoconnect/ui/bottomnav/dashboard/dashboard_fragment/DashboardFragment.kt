@@ -25,7 +25,6 @@ class DashboardFragment : Fragment() {
         createProjCardView.setOnClickListener {
             val intent = Intent(activity, CreateProject::class.java)
             startActivity(intent)
-            Toast.makeText(activity, "Create A Project", Toast.LENGTH_SHORT).show()
         }
 
         crowdFundCardView.setOnClickListener {
