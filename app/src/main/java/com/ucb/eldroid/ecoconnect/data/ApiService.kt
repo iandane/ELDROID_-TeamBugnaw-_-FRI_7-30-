@@ -1,10 +1,12 @@
 package com.ucb.eldroid.ecoconnect.data
 
 import com.ucb.eldroid.ecoconnect.data.models.LoginRequest
+import com.ucb.eldroid.ecoconnect.data.models.Project
 import com.ucb.eldroid.ecoconnect.data.models.User
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -30,4 +32,12 @@ interface ApiService {
     fun getUser(
         @Header("Authorization") authToken: String
     ): Call<User>
+
+    // Send the project to the server with the token as a header
+
+    @POST("/api/projects")
+    fun createProject(
+        @Body project: Project,
+        @Header("Authorization") authHeader: String
+    ): Call<ResponseBody>
 }
