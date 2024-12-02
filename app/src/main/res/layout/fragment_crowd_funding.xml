@@ -32,15 +32,6 @@
                 android:background="@drawable/bottom_line_border"
                 android:layout_marginTop="8dp">
 
-                <ImageView
-                    android:id="@+id/backBtn"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/back_arrow"
-                    android:textSize="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/transparent"/>
-
                 <TextView
                     android:id="@+id/crowdfund"
                     android:layout_width="match_parent"
