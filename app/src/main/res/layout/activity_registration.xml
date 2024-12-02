@@ -86,7 +86,8 @@
                     android:textColor="@color/black"
                     android:background="@drawable/signup_border"
                     android:padding="10dp"
-                    android:inputType="textCapWords"/>
+                    android:inputType="textCapSentences" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
