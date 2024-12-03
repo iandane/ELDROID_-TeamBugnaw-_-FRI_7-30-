@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -63,4 +64,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.1")
 
 
+    // Glide dependencies
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    kapt ("com.github.bumptech.glide:compiler:4.15.1") // Glide's compiler for annotation processing
 }

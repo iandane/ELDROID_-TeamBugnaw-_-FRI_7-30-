@@ -1,5 +1,6 @@
 package com.ucb.eldroid.ecoconnect.data
 
+import com.google.gson.annotations.SerializedName
 import com.ucb.eldroid.ecoconnect.data.models.LoginRequest
 import com.ucb.eldroid.ecoconnect.data.models.Project
 import com.ucb.eldroid.ecoconnect.data.models.User
@@ -55,4 +56,12 @@ interface ApiService {
         @Path("token") tokenParam: String,
         @Body userProfile: Map<String, String>
     ): Call<ResponseBody>
+
+    data class ProjectResponse(
+        @field:SerializedName("projects") val projects: List<Project>
+    )
+    @GET("/api/projects/titles-images")
+    fun getProjectsTitleAndImage(
+        @Header("Authorization") authToken: String
+    ): Call<ProjectResponse>
 }

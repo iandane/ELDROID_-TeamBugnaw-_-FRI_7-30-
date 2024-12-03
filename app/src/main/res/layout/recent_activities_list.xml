@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="wrap_content"
-android:layout_height="200dp"
-xmlns:app="http://schemas.android.com/apk/res-auto">
-
-<RelativeLayout
-    android:layout_width="190dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:padding="5dp">
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/crowdFundCardView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:cardBackgroundColor="#ACAEAD"
+        app:cardBackgroundColor="#6b7469"
         app:cardCornerRadius="25dp"
         app:cardElevation="5dp"
         android:background="@drawable/dashboard_nav">
 
-
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="10dp">
-
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageUrl"
@@ -43,11 +37,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                 android:textSize="12sp"
                 android:textAllCaps="false"
                 android:gravity="center"
-                android:textColor="@color/black"
-                android:layout_below="@id/imageUrl"/>
+                android:textColor="@color/white"
+                android:layout_below="@id/imageUrl"
+                android:layout_marginTop="8dp"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
 
-</LinearLayout>
