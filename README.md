@@ -16,4 +16,4 @@ TEST PLAN LINK:https://docs.google.com/spreadsheets/d/1oQpmp5cJsqdRFwLT5F0P-CkfT
 
 
 
-[ELDROID - Project Documents.pdf](https://github.com/user-attachments/files/17998456/ELDROID.-.Project.Documents.pdf)
+https://docs.google.com/document/d/17rcMXSsQ7F4Y_lIIkqvssKCDsI1sxH02x4a17yC15is/edit?usp=sharing
