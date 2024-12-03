@@ -14,8 +14,6 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
     private val _registrationSuccess = MutableLiveData<Boolean>()
@@ -70,7 +68,14 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         }
 
         val apiService = retrofit.create(ApiService::class.java)
-        val user = User(firstName, lastName, email, password, passwordConfirmation)
+        val user = User(
+            id = "",
+            firstName = firstName,
+            lastName = lastName,
+            email = email,
+            password = password,
+            passwordConfirmation = passwordConfirmation
+        )
 
         val call = apiService.postRegister(user)
         call.enqueue(object : Callback<ResponseBody?> {

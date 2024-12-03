@@ -8,6 +8,7 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
@@ -54,5 +55,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("token") tokenParam: String,
         @Body userProfile: Map<String, String>
+    ): Call<ResponseBody>
+
+    @DELETE("/api/user/{id}")
+    fun deleteUserAccount(
+        @Header("Authorization") token: String,
+        @Path("id") userId: String
     ): Call<ResponseBody>
 }

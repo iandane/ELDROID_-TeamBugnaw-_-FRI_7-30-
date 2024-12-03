@@ -103,9 +103,12 @@ class LoginViewModel(application: Application, private val sharedPreferences: Sh
         editor.putString("USER_LAST_NAME", user.lastName)
         editor.putString("USER_EMAIL", user.email)
         editor.putString("AUTH_TOKEN", user.token) // Store the token
+        editor.putString("USER_ID", user.id) // Store the user ID
         editor.putBoolean("isLoggedIn", true) // Update login state
         editor.apply()
     }
+
+
 
     fun isLoggedIn(): Boolean {
         return sharedPreferences.getBoolean("isLoggedIn", false)
