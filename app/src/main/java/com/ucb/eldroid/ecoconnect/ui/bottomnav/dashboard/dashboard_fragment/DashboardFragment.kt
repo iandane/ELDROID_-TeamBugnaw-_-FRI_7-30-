@@ -1,6 +1,5 @@
 package com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.dashboard_fragment
 
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +16,6 @@ import com.ucb.eldroid.ecoconnect.ui.adapters.RecentActivitiesAdapter
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.crowdfunding.CreateProject
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.crowdfunding.CrowdFundingFragment
 import com.ucb.eldroid.ecoconnect.viewmodel.auth.DashboardViewModel
-import com.ucb.eldroid.ecoconnect.viewmodel.auth.ProjectViewModel
 
 class DashboardFragment : Fragment() {
     private lateinit var viewModel: DashboardViewModel
@@ -35,10 +33,6 @@ class DashboardFragment : Fragment() {
         // Initialize ViewModel
         viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
 
-        adapter = RecentActivitiesAdapter(emptyList(), requireContext())
-        recyclerView.adapter = adapter
-
-        // Get authentication token
         val sharedPreferences = requireActivity().application.getSharedPreferences("AuthPreferences", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("AUTH_TOKEN", null)
         if (token != null) {
@@ -47,11 +41,24 @@ class DashboardFragment : Fragment() {
             Toast.makeText(requireContext(), "Authentication token is missing", Toast.LENGTH_SHORT).show()
         }
 
+        // DashboardFragment.kt
         viewModel.projects.observe(viewLifecycleOwner) { projects ->
-            // Update adapter data once projects are available
-            adapter = RecentActivitiesAdapter(projects, requireContext())
+            adapter = RecentActivitiesAdapter(projects, requireContext()) { projectId ->
+                if (token != null) {
+                    viewModel.deleteProject(projectId, token)
+                    viewModel.deleteResponse.observe(viewLifecycleOwner) { response ->
+                        Toast.makeText(requireContext(), response, Toast.LENGTH_SHORT).show()
+                        if (response == "Project deleted successfully") {
+                            viewModel.fetchProjectsTitleAndImage(token)
+                        }
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Authentication token is missing", Toast.LENGTH_SHORT).show()
+                }
+            }
             recyclerView.adapter = adapter
         }
+
 
         val createProjCardView = view.findViewById<View>(R.id.CreateProjCardview)
         val crowdFundCardView = view.findViewById<View>(R.id.crowdFundCardView)
@@ -67,7 +74,7 @@ class DashboardFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+
         return view
     }
 }
-

@@ -79,4 +79,8 @@ interface ApiService {
         @Path("id") userId: String
     ): Call<ResponseBody>
 
+    @DELETE("/api/projects/{id}")
+    fun deleteProject(
+        @Header("Authorization") authHeader: String,
+        @Path("id") projectId: String): Call<ResponseBody>
 }

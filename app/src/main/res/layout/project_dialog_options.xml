@@ -22,11 +22,11 @@
         android:id="@+id/btnDelete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/delete_option"
-        android:textAllCaps="false"
-        android:textStyle="bold"
         android:layout_gravity="center"
         android:background="#1F2220"
+        android:text="@string/delete_option"
+        android:textAllCaps="false"
+        android:textColor="@color/lightGreen"
         android:textSize="20sp"
-        android:textColor="@color/lightGreen"/>
+        android:textStyle="bold" />
 </LinearLayout>
