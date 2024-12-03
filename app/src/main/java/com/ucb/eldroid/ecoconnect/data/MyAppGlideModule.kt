@@ -4,6 +4,5 @@ import com.bumptech.glide.module.AppGlideModule
 
 @GlideModule
 class MyAppGlideModule : AppGlideModule() {
-    // Glide setup goes here (if needed)
 }
 

@@ -30,13 +30,11 @@ class DashboardFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recentActRecyclerView)
 
-        // Setup RecyclerView
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
         // Initialize ViewModel
         viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
 
-        // Initialize the adapter here to prevent the "No adapter attached" issue
         adapter = RecentActivitiesAdapter(emptyList(), requireContext())
         recyclerView.adapter = adapter
 
@@ -44,13 +42,11 @@ class DashboardFragment : Fragment() {
         val sharedPreferences = requireActivity().application.getSharedPreferences("AuthPreferences", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("AUTH_TOKEN", null)
         if (token != null) {
-            // Fetch projects with only title and image
             viewModel.fetchProjectsTitleAndImage(token)
         } else {
             Toast.makeText(requireContext(), "Authentication token is missing", Toast.LENGTH_SHORT).show()
         }
 
-        // Observe the projects data
         viewModel.projects.observe(viewLifecycleOwner) { projects ->
             // Update adapter data once projects are available
             adapter = RecentActivitiesAdapter(projects, requireContext())
