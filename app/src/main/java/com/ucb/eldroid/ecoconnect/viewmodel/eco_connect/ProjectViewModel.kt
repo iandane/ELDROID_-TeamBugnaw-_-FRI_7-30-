@@ -3,18 +3,17 @@ package com.ucb.eldroid.ecoconnect.viewmodel.auth
 import android.app.Application
 import android.content.Context
 import android.net.Uri
-import android.provider.MediaStore
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.ucb.eldroid.ecoconnect.data.ApiService
 import com.ucb.eldroid.ecoconnect.data.models.Project
 import com.ucb.eldroid.ecoconnect.utils.RetrofitClient
-import okhttp3.MediaType
+import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.ResponseBody
@@ -22,7 +21,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
-
 
 class ProjectViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -35,6 +33,12 @@ class ProjectViewModel(application: Application) : AndroidViewModel(application)
     private val _validationError = MutableLiveData<String>()
     val validationError: LiveData<String> get() = _validationError
 
+    private val _deleteResponse = MutableLiveData<String>()
+    val deleteResponse: LiveData<String> = _deleteResponse
+
+    private val apiService: ApiService = RetrofitClient.instance?.create(ApiService::class.java) ?: throw IllegalStateException("ApiService not initialized")
+
+    // Existing method to create a project
     fun createProject(title: String, description: String, moneyGoal: Double, deadline: String, image: Uri?) {
         // Validate fields
         if (title.isEmpty() || description.isEmpty() || moneyGoal <= 0 || deadline.isEmpty()) {
@@ -49,8 +53,6 @@ class ProjectViewModel(application: Application) : AndroidViewModel(application)
             _projectCreationError.postValue("No authentication token found")
             return
         }
-
-        val apiService = RetrofitClient.instance?.create(ApiService::class.java)
 
         // Prepare request parts
         val titlePart = title.toRequestBody("text/plain".toMediaType())
@@ -71,7 +73,7 @@ class ProjectViewModel(application: Application) : AndroidViewModel(application)
         }
 
         // Make API call
-        val call = apiService?.createProject(
+        val call = apiService.createProject(
             "Bearer $token",
             titlePart,
             descriptionPart,
@@ -95,6 +97,38 @@ class ProjectViewModel(application: Application) : AndroidViewModel(application)
         })
     }
 
+    fun deleteProject(id: String, token: String) {
+        viewModelScope.launch {
+            try {
+                Log.d("DeleteProject", "Attempting to delete project with ID: $id")
+                Log.d("DeleteProject", "Using token: Bearer $token")
+                val apiService = RetrofitClient.instance?.create(ApiService::class.java)
+                val call = apiService?.deleteProject("Bearer $token", id.toString())
+                call?.enqueue(object : Callback<ResponseBody> {
+                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                        if (response.isSuccessful) {
+                            Log.d("DeleteProject", "Project deleted successfully")
+                            _deleteResponse.postValue("Project deleted successfully")
+                        } else {
+                            val errorMessage = response.errorBody()?.string() ?: "Error deleting project"
+                            Log.e("DeleteProject", "API error: $errorMessage, Response code: ${response.code()}")
+                            _deleteResponse.postValue("Error deleting project: ${response.code()} - $errorMessage")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                        Log.e("DeleteProject", "Network error: ${t.message}")
+                        _deleteResponse.postValue("Network error: ${t.message}")
+                    }
+                })
+            } catch (e: Exception) {
+                Log.e("DeleteProject", "Exception: ${e.localizedMessage}")
+                _deleteResponse.postValue("Exception: ${e.localizedMessage}")
+            }
+        }
+    }
+
+
     private fun getFileFromUri(uri: Uri): File? {
         val contentResolver = getApplication<Application>().contentResolver
         val inputStream = contentResolver.openInputStream(uri)
@@ -113,5 +147,3 @@ class ProjectViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 }
-
-

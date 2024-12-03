@@ -27,11 +27,9 @@ class NewsFeedFragment : Fragment() {
         messagesRecyclerView = view.findViewById(R.id.messagesRecyclerView)
         messagesRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Initialize the adapter
         newsFeedAdapter = NewsFeedAdapter(requireContext(), postList)
         messagesRecyclerView.adapter = newsFeedAdapter
 
-        // Load dummy data or fetch from server
         loadDummyPosts()
 
         return view

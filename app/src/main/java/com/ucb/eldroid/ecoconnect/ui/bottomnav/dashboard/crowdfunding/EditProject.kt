@@ -7,15 +7,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.ucb.eldroid.ecoconnect.R
 import com.ucb.eldroid.ecoconnect.data.ApiService
 import com.ucb.eldroid.ecoconnect.data.models.Project
+import com.ucb.eldroid.ecoconnect.data.response.ProjectResponse
 import com.ucb.eldroid.ecoconnect.utils.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,17 +29,14 @@ class EditProject : AppCompatActivity() {
         projectId = intent.getStringExtra("PROJECT_ID")?.toIntOrNull() // Ensure it's converted to Int if possible
         Log.d("EditProject", "Received Project ID: $projectId")
 
-        // Check if the projectId is valid
         if (projectId != null) {
-            fetchProjectDetails(projectId!!)  // Ensure projectId is non-null
+            fetchProjectDetails(projectId!!)
         } else {
             Toast.makeText(this, "Invalid Project ID", Toast.LENGTH_SHORT).show()
         }
     }
 
-    // Function to fetch project details using the projectId
     private fun fetchProjectDetails(id: Int) {
-        // Get the token from SharedPreferences
         val sharedPreferences = getSharedPreferences("AuthPreferences", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("AUTH_TOKEN", null)
 
@@ -51,17 +45,15 @@ class EditProject : AppCompatActivity() {
             return
         }
 
-        // Create the Retrofit service instance
         val apiService = RetrofitClient.instance?.create(ApiService::class.java)
 
         Log.d("APIRequest", "Token: $token")
         Log.d("APIRequest", "Fetching project details for ID: $id")
 
-        // Make the API call with the token in the Authorization header
         val call = apiService?.getProjectDetails(id, "Bearer $token")
 
-        call?.enqueue(object : Callback<ApiService.ProjectResponse> {
-            override fun onResponse(call: Call<ApiService.ProjectResponse>, response: Response<ApiService.ProjectResponse>) {
+        call?.enqueue(object : Callback<ProjectResponse> {
+            override fun onResponse(call: Call<ProjectResponse>, response: Response<ProjectResponse>) {
                 if (response.isSuccessful) {
                     val projectResponse = response.body()
                     Log.d("APIResponse", "Project details: $projectResponse")
@@ -78,7 +70,7 @@ class EditProject : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<ApiService.ProjectResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ProjectResponse>, t: Throwable) {
                 Log.e("APIError", "Error: ${t.message}")
                 Toast.makeText(this@EditProject, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
@@ -94,7 +86,7 @@ class EditProject : AppCompatActivity() {
         // Image
         project.image?.let {
             val imageView = findViewById<ImageView>(R.id.addImage)
-            Glide.with(this).load(it).into(imageView)  // Use Glide to load image
+            Glide.with(this).load(it).into(imageView)
         }
     }
 }

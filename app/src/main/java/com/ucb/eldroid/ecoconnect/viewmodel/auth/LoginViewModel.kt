@@ -37,14 +37,14 @@ class LoginViewModel(application: Application, private val sharedPreferences: Sh
             emailError.value = "Please enter a valid email address"
             isValid = false
         } else {
-            emailError.value = null // Clear any previous error
+            emailError.value = null
         }
 
         if (password.isEmpty()) {
             passwordError.value = "Please enter your password"
             isValid = false
         } else {
-            passwordError.value = null // Clear any previous error
+            passwordError.value = null
         }
 
         return isValid
@@ -102,9 +102,9 @@ class LoginViewModel(application: Application, private val sharedPreferences: Sh
         editor.putString("USER_FIRST_NAME", user.firstName)
         editor.putString("USER_LAST_NAME", user.lastName)
         editor.putString("USER_EMAIL", user.email)
-        editor.putString("AUTH_TOKEN", user.token) // Store the token
-        editor.putString("USER_ID", user.id) // Store the user ID
-        editor.putBoolean("isLoggedIn", true) // Update login state
+        editor.putString("AUTH_TOKEN", user.token)
+        editor.putString("USER_ID", user.id)
+        editor.putBoolean("isLoggedIn", true)
         editor.apply()
     }
 

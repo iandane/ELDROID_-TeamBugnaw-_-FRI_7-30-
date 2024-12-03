@@ -25,37 +25,29 @@ class EditProfile : AppCompatActivity() {
         this.enableEdgeToEdge()
         setContentView(R.layout.activity_edit_profile)
 
-        // Set up ActionBar back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Handle custom back button
         val backBtn = findViewById<ImageView>(R.id.backBtn)
         backBtn.setOnClickListener { finish() } // Closes this activity
 
-        // Handle window insets for Edge-to-Edge UI
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Set up EditTexts
         val nameEditText = findViewById<EditText>(R.id.edit_name)
         val emailEditText = findViewById<EditText>(R.id.edit_email)
         val passwordEditText = findViewById<EditText>(R.id.edit_password)
 
-        // Load existing profile data
         loadProfileData(nameEditText, emailEditText)
 
-        // Set up the Save button
         val saveButton = findViewById<Button>(R.id.save_button)
         saveButton.setOnClickListener {
-            // Get input values
             val name = nameEditText.text.toString().trim()
             val email = emailEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
-            // Validate and update profile
             if (name.isNotEmpty() && email.isNotEmpty()) {
                 val nameParts = name.split(" ")
                 val firstName = nameParts.getOrNull(0) ?: ""

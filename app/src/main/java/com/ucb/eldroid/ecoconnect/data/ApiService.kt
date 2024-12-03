@@ -1,9 +1,10 @@
 package com.ucb.eldroid.ecoconnect.data
 
-import com.google.gson.annotations.SerializedName
+import com.ucb.eldroid.ecoconnect.data.models.Contribution
 import com.ucb.eldroid.ecoconnect.data.models.LoginRequest
 import com.ucb.eldroid.ecoconnect.data.models.Project
 import com.ucb.eldroid.ecoconnect.data.models.User
+import com.ucb.eldroid.ecoconnect.data.response.ProjectResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -48,7 +49,7 @@ interface ApiService {
         @Part("description") description: RequestBody,
         @Part("money_goal") moneyGoal: RequestBody,
         @Part("deadline") deadline: RequestBody,
-        @Part image: MultipartBody.Part? // Image file as a part
+        @Part image: MultipartBody.Part?
     ): Call<Project>
 
     @PUT("/api/user/{token}")
@@ -58,26 +59,10 @@ interface ApiService {
         @Body userProfile: Map<String, String>
     ): Call<ResponseBody>
 
-    @DELETE("/api/user/{id}")
-    fun deleteUserAccount(
-        @Header("Authorization") token: String,
-        @Path("id") userId: String
-    ): Call<ResponseBody>
-
-    data class ProjectResponse(
-        @field:SerializedName("projects") val projects: List<Project>
-    )
-
     @GET("/api/projects/titles-images")
     fun getProjectsTitleAndImage(
         @Header("Authorization") authToken: String
     ): Call<ProjectResponse>
-
-    @GET("api/projects/{id}")
-    fun getProjectID(
-        @Path("id") projectId: Int,
-        @Header("Authorization") token: String // Add this header to the API request
-    ): Call<Project>
 
     @GET("api/projects/{id}")
     fun getProjectDetails(
@@ -85,6 +70,20 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): Call<ProjectResponse>
 
+    @POST("/api/contribute")
+    fun contribute(
+        @Header("Authorization") token: String,
+        @Body contribution: Contribution
+    ): Call<ResponseBody>
 
+    @DELETE("/api/user/{id}")
+    fun deleteUserAccount(
+        @Header("Authorization") token: String,
+        @Path("id") userId: String
+    ): Call<ResponseBody>
 
+    @DELETE("/api/projects/{id}")
+    fun deleteProject(
+        @Header("Authorization") authHeader: String,
+        @Path("id") projectId: String): Call<ResponseBody>
 }

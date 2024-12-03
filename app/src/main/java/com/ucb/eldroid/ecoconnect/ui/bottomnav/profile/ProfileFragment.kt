@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ucb.eldroid.ecoconnect.R
 import com.ucb.eldroid.ecoconnect.ui.auth.Login
-import com.ucb.eldroid.ecoconnect.viewmodel.auth.ProfileViewModel
+import com.ucb.eldroid.ecoconnect.viewmodel.eco_connect.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 
@@ -39,7 +39,6 @@ class ProfileFragment : Fragment() {
         emailTextView = view.findViewById(R.id.email)
         logoutButton = view.findViewById(R.id.logoutbutton)
 
-        // Set up logout button click listener safely
         logoutButton?.setOnClickListener {
             logout()
         }
@@ -101,16 +100,15 @@ class ProfileFragment : Fragment() {
         val editor = sharedPreferences.edit()
 
         // Clear all user-related data
-        editor.putBoolean("isLoggedIn", false) // Clear login state
-        editor.remove("USER_FIRST_NAME") // Clear user data
+        editor.putBoolean("isLoggedIn", false)
+        editor.remove("USER_FIRST_NAME")
         editor.remove("USER_LAST_NAME")
         editor.remove("USER_EMAIL")
-        editor.remove("AUTH_TOKEN") // Clear token
+        editor.remove("AUTH_TOKEN")
         editor.apply()
 
-        // Navigate to Login screen
         val intent = Intent(requireContext(), Login::class.java)
         startActivity(intent)
-        requireActivity().finish()  // Close the current activity
+        requireActivity().finish()
     }
 }

@@ -18,7 +18,6 @@ import com.ucb.eldroid.ecoconnect.ui.adapters.RecentActivitiesAdapter
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.crowdfunding.CreateProject
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.crowdfunding.CrowdFundingFragment
 import com.ucb.eldroid.ecoconnect.viewmodel.auth.DashboardViewModel
-import com.ucb.eldroid.ecoconnect.viewmodel.auth.ProjectViewModel
 
 class DashboardFragment : Fragment() {
     private lateinit var viewModel: DashboardViewModel
@@ -36,28 +35,46 @@ class DashboardFragment : Fragment() {
         // Initialize ViewModel
         viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
 
-        // Initialize the adapter with an empty list
-        adapter = RecentActivitiesAdapter(emptyList(), requireContext())
-        recyclerView.adapter = adapter
-
-        // Get authentication token
-        val sharedPreferences = requireActivity().application.getSharedPreferences("AuthPreferences", Context.MODE_PRIVATE)
+        val sharedPreferences = requireActivity().application.getSharedPreferences(
+            "AuthPreferences",
+            Context.MODE_PRIVATE
+        )
         val token = sharedPreferences.getString("AUTH_TOKEN", null)
+
         if (token != null) {
             viewModel.fetchProjectsTitleAndImage(token)
         } else {
-            Toast.makeText(requireContext(), "Authentication token is missing", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Authentication token is missing", Toast.LENGTH_SHORT)
+                .show()
         }
 
         // Observe the projects LiveData
         viewModel.projects.observe(viewLifecycleOwner) { projects ->
             Log.d("DashboardFragment", "Projects received: ${projects.size}")
             if (projects.isNotEmpty()) {
-                // Update the adapter with the new list of projects
-                adapter.projects = projects
-                adapter.notifyDataSetChanged() // Notify the adapter that the data has changed
+                // Set up the adapter with the project data
+                adapter = RecentActivitiesAdapter(projects, requireContext()) { projectId ->
+                    if (token != null) {
+                        viewModel.deleteProject(projectId, token)
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Authentication token is missing",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                recyclerView.adapter = adapter
             } else {
                 Log.d("DashboardFragment", "No projects available")
+            }
+        }
+
+        // Observe deletion status
+        viewModel.deleteResponse.observe(viewLifecycleOwner) { response ->
+            Toast.makeText(requireContext(), response, Toast.LENGTH_SHORT).show()
+            if (response == "Project deleted successfully" && token != null) {
+                viewModel.fetchProjectsTitleAndImage(token)
             }
         }
 

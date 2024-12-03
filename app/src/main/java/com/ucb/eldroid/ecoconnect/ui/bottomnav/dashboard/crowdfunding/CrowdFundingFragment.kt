@@ -16,23 +16,18 @@ class CrowdFundingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_crowd_funding, container, false)
 
-        // Initialize the ListView
         val listView = rootView.findViewById<ListView>(R.id.listview)
 
-        // Sample data
         val projects = listOf(
             CrowdfundingProject("Save the Rainforest", "Eco Warriors", "₱1M"),
             CrowdfundingProject("Clean Ocean Initiative", "Blue Planet", "₱500K"),
             CrowdfundingProject("Solar Energy for Schools", "Bright Future", "₱750K")
         )
 
-        // Set the adapter to the ListView
         val adapter = CrowdfundingAdapter(requireContext(), projects)
         listView.adapter = adapter
-
 
         return rootView
     }

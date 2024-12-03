@@ -2,11 +2,9 @@ package com.ucb.eldroid.ecoconnect.ui.bottomnav
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 import com.ucb.eldroid.ecoconnect.R
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.crowdfunding.CrowdFundingFragment
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.dashboard_fragment.DashboardFragment
@@ -43,7 +41,6 @@ class BottomNavigationBar : AppCompatActivity() {
         replaceFragment(DashboardFragment())
     }
 
-
     override fun onBackPressed() {
         super.onBackPressed()
         val homeIntent = Intent(Intent.ACTION_MAIN)
@@ -51,7 +48,6 @@ class BottomNavigationBar : AppCompatActivity() {
         homeIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(homeIntent)
 
-        // Close the current activity
         finish()
     }
     private fun replaceFragment(fragment: Fragment) {
