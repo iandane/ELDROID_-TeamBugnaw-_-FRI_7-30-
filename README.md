@@ -11,7 +11,9 @@ ANDROID REPO LINK: https://github.com/iandane/ELDROID_-TeamBugnaw-_-FRI_7-30-.gi
 
 ELPHP REPO LINK: https://github.com/iandane/ELPHP_TeamBugnaw_SAT_730.git
 
-
 TEST PLAN LINK:https://docs.google.com/spreadsheets/d/1oQpmp5cJsqdRFwLT5F0P-CkfTKlwo6Wtk112tcSQmug/edit?usp=sharing
 
-[Uploading ELDROID - Project Documents.pdf…]()
+
+
+
+[ELDROID - Project Documents.pdf](https://github.com/user-attachments/files/17998456/ELDROID.-.Project.Documents.pdf)
