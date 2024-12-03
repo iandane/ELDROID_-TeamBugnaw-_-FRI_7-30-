@@ -14,6 +14,4 @@ ELPHP REPO LINK: https://github.com/iandane/ELPHP_TeamBugnaw_SAT_730.git
 TEST PLAN LINK:https://docs.google.com/spreadsheets/d/1oQpmp5cJsqdRFwLT5F0P-CkfTKlwo6Wtk112tcSQmug/edit?usp=sharing
 
 
-
-
 https://docs.google.com/document/d/17rcMXSsQ7F4Y_lIIkqvssKCDsI1sxH02x4a17yC15is/edit?usp=sharing
