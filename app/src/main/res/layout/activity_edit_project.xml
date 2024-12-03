@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightDark"
+    tools:context=".ui.bottomnav.dashboard.crowdfunding.EditProject">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/crowdfundBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/lightgray"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/transparent"
+                android:src="@drawable/back_arrow"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/crowdfund"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/edit_project"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/crowdfundBox" />
+
+        <LinearLayout
+            android:id="@+id/titleProjBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/crowdfundBox">
+
+            <TextView
+                android:id="@+id/titleProjTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:padding="10dp"
+                android:text="@string/title"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/titleProject"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
+                android:maxLength="35"
+                android:background="@drawable/project_border"
+                android:inputType="textCapWords" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/descriptionBox"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/linear_color"
+            android:padding="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleProjBox">
+
+            <TextView
+                android:id="@+id/descriptionTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:text="@string/description"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/projectDescription"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/project_hint"
+                android:layout_below="@id/descriptionTxtView"
+                android:layout_marginLeft="15dp"
+                android:inputType="textMultiLine|textCapWords"
+                android:padding="5dp"
+                android:maxLines="5"
+                android:scrollbars="vertical"
+                android:gravity="top|start"
+                android:background="@android:color/transparent"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/photoBox"
+            android:layout_width="250dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/lightDark"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionBox">
+
+            <ImageView
+                android:id="@+id/addImage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:clickable="true"
+                android:onClick="onImageClicked"
+                android:src="@drawable/addbutton" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/add_photo"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/detailsBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photoBox">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:columnCount="2"
+                android:rowCount="4">
+
+                <TextView
+                    android:id="@+id/moneyGoalTxtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/ledger"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="@string/money_goal"
+                    android:textColor="@color/white" />
+
+                <EditText
+                    android:id="@+id/moneyGoal"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/project_border"
+                    android:gravity="fill_horizontal"
+                    android:inputType="number"
+                    android:hint="@string/money_hint"
+                    android:padding="8dp"
+                    android:paddingLeft="9dp" />
+
+                <TextView
+                    android:id="@+id/dDayTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/ledger"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="@string/deadline_date"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/deadlineDateTextView"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/project_border"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/calendar"
+                    android:focusable="true"
+                    android:gravity="fill_horizontal"
+                    android:padding="10dp"
+                    android:text="@string/select_deadline"
+                    android:textSize="13dp" />
+
+            </GridLayout>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/linear_color"
+            android:fontFamily="@font/lato"
+            android:text="@string/edit"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsBox" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

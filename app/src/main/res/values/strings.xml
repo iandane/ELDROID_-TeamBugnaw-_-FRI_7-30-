@@ -15,8 +15,13 @@
     <string name="select_deadline">Select Deadline</string>
     <string name="publish">PUBLISH</string>
 
+    //edit_project.xml
+    <string name="edit_project">Edit Project</string>
+    <string name="photo">Photo</string>
+    <string name="edit">EDIT</string>
+
     //project_dialog
-    <string name="view_option">View</string>
+    <string name="edit_option">Edit</string>
     <string name="delete_option">Delete</string>
 
     //donation.xml
@@ -102,23 +107,23 @@
     <string name="join">JOIN NOW</string>
 
     //crowdfund_list.xml
-        <string name="help_save_planet">Help us save the planet!</string>
-        <string name="created_by">Created by: </string>
-        <string name="author_swathi">Swathi</string>
-        <string name="amount">₱1M</string>
-        <string name="goal2">Goal</string>
-        <string name="donate2">Donate</string>
+    <string name="help_save_planet">Help us save the planet!</string>
+    <string name="created_by">Created by: </string>
+    <string name="author_swathi">Swathi</string>
+    <string name="amount">₱1M</string>
+    <string name="goal2">Goal</string>
+    <string name="donate2">Donate</string>
 
     //forgot_password.xml
-        <string name="forgot_password_title">Forgot Your Password?</string>
-        <string name="reset_instructions">Enter your email or phone number and we\'ll \nsend you a link to reset your password</string>
-        <string name="email_or_phone_hint">Email or Phone</string>
-        <string name="send">SEND</string>
-        <string name="back_to_login">Back to login</string>
+    <string name="forgot_password_title">Forgot Your Password?</string>
+    <string name="reset_instructions">Enter your email or phone number and we\'ll \nsend you a link to reset your password</string>
+    <string name="email_or_phone_hint">Email or Phone</string>
+    <string name="send">SEND</string>
+    <string name="back_to_login">Back to login</string>
 
     //newsfeed.xml
-        <string name="jackie_chan">jaCKE CHAN</string>
-        <string name="world_environment_day">World Environment Day!</string>
-        <string name="post">POST</string>
+    <string name="jackie_chan">jaCKE CHAN</string>
+    <string name="world_environment_day">World Environment Day!</string>
+    <string name="post">POST</string>
 
 </resources>

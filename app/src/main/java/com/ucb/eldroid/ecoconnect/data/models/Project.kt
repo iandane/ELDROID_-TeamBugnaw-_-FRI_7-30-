@@ -3,6 +3,7 @@ package com.ucb.eldroid.ecoconnect.data.models
 import com.google.gson.annotations.SerializedName
 
 class Project(
+    @field:SerializedName("id") var id: String,
     @field:SerializedName("title") var title: String,
     @field:SerializedName("description") var description: String,
     @field:SerializedName("money_goal") var moneyGoal: Double,

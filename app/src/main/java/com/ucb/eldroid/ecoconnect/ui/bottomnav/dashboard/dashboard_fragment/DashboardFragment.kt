@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,7 @@ class DashboardFragment : Fragment() {
         // Initialize ViewModel
         viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
 
+        // Initialize the adapter with an empty list
         adapter = RecentActivitiesAdapter(emptyList(), requireContext())
         recyclerView.adapter = adapter
 
@@ -47,10 +49,16 @@ class DashboardFragment : Fragment() {
             Toast.makeText(requireContext(), "Authentication token is missing", Toast.LENGTH_SHORT).show()
         }
 
+        // Observe the projects LiveData
         viewModel.projects.observe(viewLifecycleOwner) { projects ->
-            // Update adapter data once projects are available
-            adapter = RecentActivitiesAdapter(projects, requireContext())
-            recyclerView.adapter = adapter
+            Log.d("DashboardFragment", "Projects received: ${projects.size}")
+            if (projects.isNotEmpty()) {
+                // Update the adapter with the new list of projects
+                adapter.projects = projects
+                adapter.notifyDataSetChanged() // Notify the adapter that the data has changed
+            } else {
+                Log.d("DashboardFragment", "No projects available")
+            }
         }
 
         val createProjCardView = view.findViewById<View>(R.id.CreateProjCardview)
@@ -67,7 +75,7 @@ class DashboardFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+
         return view
     }
 }
-

@@ -67,9 +67,24 @@ interface ApiService {
     data class ProjectResponse(
         @field:SerializedName("projects") val projects: List<Project>
     )
+
     @GET("/api/projects/titles-images")
     fun getProjectsTitleAndImage(
         @Header("Authorization") authToken: String
     ): Call<ProjectResponse>
+
+    @GET("api/projects/{id}")
+    fun getProjectID(
+        @Path("id") projectId: Int,
+        @Header("Authorization") token: String // Add this header to the API request
+    ): Call<Project>
+
+    @GET("api/projects/{id}")
+    fun getProjectDetails(
+        @Path("id") projectId: Int,
+        @Header("Authorization") token: String,
+    ): Call<ProjectResponse>
+
+
 
 }

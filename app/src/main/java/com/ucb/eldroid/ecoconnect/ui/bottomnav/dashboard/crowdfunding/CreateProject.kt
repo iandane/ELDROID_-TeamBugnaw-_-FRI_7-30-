@@ -60,7 +60,7 @@ class CreateProject : AppCompatActivity() {
             val deadline = deadlineField.text.toString().trim()
 
             // Format the deadline date
-            val inputFormat = SimpleDateFormat("M/d/yyyy", Locale.US)
+            val inputFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
             val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
             val formattedDeadline: String
@@ -109,7 +109,12 @@ class CreateProject : AppCompatActivity() {
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _, selectedYear, selectedMonth, selectedDay ->
-                    val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                    // Add 1 to the month to convert from zero-based index
+                    val formattedDay = String.format("%02d", selectedDay)  // Ensures two-digit day
+                    val formattedMonth = String.format("%02d", selectedMonth + 1)  // Ensures two-digit month (add 1)
+                    val formattedYear = selectedYear
+
+                    val selectedDate = "$formattedDay/$formattedMonth/$formattedYear"
                     deadlineField.text = selectedDate
                 },
                 year, month, day
