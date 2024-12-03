@@ -1,6 +1,7 @@
 package com.ucb.eldroid.ecoconnect.data
 
 import com.google.gson.annotations.SerializedName
+import com.ucb.eldroid.ecoconnect.data.models.Contribution
 import com.ucb.eldroid.ecoconnect.data.models.LoginRequest
 import com.ucb.eldroid.ecoconnect.data.models.Project
 import com.ucb.eldroid.ecoconnect.data.models.User
@@ -58,12 +59,6 @@ interface ApiService {
         @Body userProfile: Map<String, String>
     ): Call<ResponseBody>
 
-    @DELETE("/api/user/{id}")
-    fun deleteUserAccount(
-        @Header("Authorization") token: String,
-        @Path("id") userId: String
-    ): Call<ResponseBody>
-
     data class ProjectResponse(
         @field:SerializedName("projects") val projects: List<Project>
     )
@@ -71,5 +66,17 @@ interface ApiService {
     fun getProjectsTitleAndImage(
         @Header("Authorization") authToken: String
     ): Call<ProjectResponse>
+
+    @POST("/api/contribute")
+    fun contribute(
+        @Header("Authorization") token: String,
+        @Body contribution: Contribution
+    ): Call<ResponseBody>
+
+    @DELETE("/api/user/{id}")
+    fun deleteUserAccount(
+        @Header("Authorization") token: String,
+        @Path("id") userId: String
+    ): Call<ResponseBody>
 
 }

@@ -42,7 +42,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:textColor="@color/black"
-        android:fontFamily="@font/inter_bold"/>
+        android:fontFamily="@font/inter_bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
         android:textSize="30dp"
         android:layout_marginLeft="30dp"
         android:textColor="@color/headerGreen"
-        android:fontFamily="@font/inter_bold"/>
+        android:fontFamily="@font/inter_bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,10 +68,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:max="100000"
+        android:max="10000"
         android:thumbTint="@color/lightgray"
         android:progressTint="@color/headerGreen"
-        android:progress="50000"/>
+        android:progress="0" />
 
     <EditText
         android:id="@+id/seekBarValue"
@@ -83,7 +83,7 @@
         android:textAlignment="center"
         android:inputType="number"
         android:textSize="20dp"
-        android:fontFamily="@font/inter_bold"/>
+        android:fontFamily="@font/inter_bold" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -130,6 +130,6 @@
             android:fontFamily="@font/inter"
             android:background="@color/headerGreen"
             android:text="@string/contribute"
-            android:padding="10dp"/>
+            android:padding="10dp" />
     </RelativeLayout>
 </LinearLayout>

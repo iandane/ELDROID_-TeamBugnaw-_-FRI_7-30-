@@ -92,7 +92,7 @@
 
     //profile.xml
     <string name="my_profile">My Profile</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Leogie Antonio</string>
     <string name="edit_profile2">Edit Profile</string>
     <string name="favorites">Favorites</string>
     <string name="subscription">Subscription</string>
@@ -117,7 +117,7 @@
         <string name="back_to_login">Back to login</string>
 
     //newsfeed.xml
-        <string name="jackie_chan">jaCKE CHAN</string>
+        <string name="jackie_chan">Leogie Antonio</string>
         <string name="world_environment_day">World Environment Day!</string>
         <string name="post">POST</string>
 
