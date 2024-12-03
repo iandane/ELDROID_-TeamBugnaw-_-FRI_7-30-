@@ -16,4 +16,22 @@
     <color name="red">#E34234</color>
     <color name="search">#D3D3D3</color>
     <color name="hoverColor">#FF5733</color>
+        <color name="cardBackground">#FFFFFF</color>
+        <color name="profileImageBorder">#FF0000</color>
+        <color name="usernameText">#004d00</color>
+        <color name="postText">#333333</color>
+        <color name="imageBackground">#F0F0F0</color>
+        <color name="iconTint">#757575</color>
+        <color name="commentBackground">#E0FFE0</color>
+        <color name="heartColor">#FF4081</color>
+        <color name="buttonBackground">#3F51B5</color>
+        <color name="buttonText">#FFFFFF</color>
+        <color name="backgroundGreen">#DFF0D8</color> <!-- Light green for background -->
+        <color name="lightGray">#D3D3D3</color>
+
+
+
+
+
+
 </resources>

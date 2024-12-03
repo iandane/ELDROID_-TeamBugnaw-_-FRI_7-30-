@@ -1,5 +1,6 @@
 package com.ucb.eldroid.ecoconnect.data
 
+import com.ucb.eldroid.ecoconnect.data.models.Contribution
 import com.ucb.eldroid.ecoconnect.data.models.LoginRequest
 import com.ucb.eldroid.ecoconnect.data.models.User
 import okhttp3.ResponseBody
@@ -30,4 +31,14 @@ interface ApiService {
     fun getUser(
         @Header("Authorization") authToken: String
     ): Call<User>
+
+        @POST("/api/contribute")
+        fun contribute(
+            @Header("Authorization") token: String,
+            @Body contribution: Contribution
+        ): Call<ResponseBody>
+
+
+
+
 }
