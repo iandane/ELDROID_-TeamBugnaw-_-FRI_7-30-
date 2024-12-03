@@ -15,6 +15,10 @@
     <string name="select_deadline">Select Deadline</string>
     <string name="publish">PUBLISH</string>
 
+    //project_dialog
+    <string name="view_option">View</string>
+    <string name="delete_option">Delete</string>
+
     //donation.xml
     <string name="donation">Donation</string>
     <string name="help_us_to">Help us to</string>

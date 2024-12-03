@@ -33,14 +33,12 @@ class CrowdfundingAdapter(
         val projectTitle = view.findViewById<TextView>(R.id.projectTitle)
         val createdByTextView = view.findViewById<TextView>(R.id.createdByTextView)
         val projectCreatedBy = view.findViewById<TextView>(R.id.projectCreatedBy)
-        val projectMoneyGoal = view.findViewById<TextView>(R.id.projectMoneyGoal)
         val donateBtn = view.findViewById<Button>(R.id.donateBtn)
 
         // Set data for the project
         projectTitle.text = project.title
         createdByTextView.text = "Created by: "
         projectCreatedBy.text = project.createdBy
-        projectMoneyGoal.text = project.goal
 
         // Donate button click action
         donateBtn.setOnClickListener {

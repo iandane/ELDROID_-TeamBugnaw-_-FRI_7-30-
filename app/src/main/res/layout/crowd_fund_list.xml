@@ -50,25 +50,15 @@
             app:layout_constraintStart_toEndOf="@id/createdByTextView"/>
 
         <TextView
-            android:id="@+id/projectMoneyGoal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/amount"
-            android:textSize="20sp"
-            android:textColor="@color/backgGreen"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/createdByTextView"/>
-
-        <TextView
             android:id="@+id/goal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/goal"
             android:textSize="20sp"
+            android:layout_marginTop="20dp"
             android:textColor="@color/backgGreen"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/projectMoneyGoal"/>
+            app:layout_constraintTop_toBottomOf="@id/projectCreatedBy"/>
 
         <Button
             android:id="@+id/donateBtn"
