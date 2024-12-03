@@ -11,18 +11,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ucb.eldroid.ecoconnect.R
+import com.ucb.eldroid.ecoconnect.data.models.Project
 import java.net.URL
 
-class NewsFeedAdapter(private val context: Context, private val postList: List<Post>) :
+class NewsFeedAdapter(private val context: Context, private val projectList: List<Project>) :
     RecyclerView.Adapter<NewsFeedAdapter.NewsFeedViewHolder>() {
 
     class NewsFeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val profileImageView: ImageView = itemView.findViewById(R.id.profileimageView)
-        val usernameTextView: TextView = itemView.findViewById(R.id.username)
-        val contentTextView: TextView = itemView.findViewById(R.id.postcontent)
+        val titleTextView: TextView = itemView.findViewById(R.id.title)
+        val descriptionTextView: TextView = itemView.findViewById(R.id.description)
+        val moneyGoalTextView: TextView = itemView.findViewById(R.id.money_goal)
+        val deadlineTextView: TextView = itemView.findViewById(R.id.deadline)
         val projectImageView: ImageView = itemView.findViewById(R.id.imageView2)
-        val heartImageView: ImageView = itemView.findViewById(R.id.heart)
-        val commentsRecyclerView: RecyclerView = itemView.findViewById(R.id.commentRecyclerView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsFeedViewHolder {
@@ -31,23 +31,25 @@ class NewsFeedAdapter(private val context: Context, private val postList: List<P
     }
 
     override fun onBindViewHolder(holder: NewsFeedViewHolder, position: Int) {
-        val post = postList[position]
-        holder.contentTextView.text = post.content
-        holder.usernameTextView.text = post.username
+        val project = projectList[position]
 
-        // Load images without Glide
-        val profileImageUrl = post.profileImage
-        val projectImageUrl = post.projectImage
-        if (profileImageUrl != null) {
-            loadImageFromUrl(holder.profileImageView, profileImageUrl)
-        }
+        // Set title and description from the project
+        holder.titleTextView.text = project.title
+        holder.descriptionTextView.text = project.description
+
+        // Set money goal and deadline
+        holder.moneyGoalTextView.text = project.moneyGoal.toString()
+        holder.deadlineTextView.text = project.deadline
+
+        // Load project image
+        val projectImageUrl = project.image
         if (projectImageUrl != null) {
             loadImageFromUrl(holder.projectImageView, projectImageUrl)
         }
     }
 
     override fun getItemCount(): Int {
-        return postList.size
+        return projectList.size
     }
 
     // Function to load image from URL

@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.ucb.eldroid.ecoconnect.R
+import com.ucb.eldroid.ecoconnect.ui.NewsfeedFragment
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.crowdfunding.CrowdFundingFragment
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.dashboard_fragment.DashboardFragment
-import com.ucb.eldroid.ecoconnect.ui.bottomnav.home.NewsFeedFragment
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.profile.ProfileFragment
 
 class BottomNavigationBar : AppCompatActivity() {
@@ -34,7 +34,7 @@ class BottomNavigationBar : AppCompatActivity() {
                 replaceFragment(ProfileFragment())
                 true
             }R.id.feed -> {
-                replaceFragment(NewsFeedFragment())
+                replaceFragment(NewsfeedFragment())
                 true
             }
                 else -> false

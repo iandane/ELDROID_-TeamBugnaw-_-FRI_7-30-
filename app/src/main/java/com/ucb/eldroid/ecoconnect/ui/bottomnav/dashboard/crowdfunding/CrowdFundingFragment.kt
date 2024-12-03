@@ -8,7 +8,7 @@ import android.widget.ListView
 import androidx.fragment.app.Fragment
 import com.ucb.eldroid.ecoconnect.R
 import com.ucb.eldroid.ecoconnect.ui.adapters.CrowdfundingAdapter
-import com.ucb.eldroid.ecoconnect.ui.adapters.CrowdfundingProject
+import com.ucb.eldroid.ecoconnect.data.models.CrowdfundingProject
 
 class CrowdFundingFragment : Fragment() {
 

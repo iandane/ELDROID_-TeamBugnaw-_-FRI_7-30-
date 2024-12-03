@@ -41,7 +41,7 @@
     <string name="login">LOGIN</string>
     <string name="sign_in_google">Sign in with Google</string>
     <string name="dont_have_account">Don’t have an account?</string>
-    <string name="sign_up"> Sign Up</string>
+    <string name="sign_up">  Sign Up</string>
 
     //project_details.xml
     <string name="project_details">Project Details</string>

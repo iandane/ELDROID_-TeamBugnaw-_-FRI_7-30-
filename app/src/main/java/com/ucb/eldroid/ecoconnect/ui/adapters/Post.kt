@@ -1,18 +1,36 @@
-package com.ucb.eldroid.ecoconnect.ui.adapters
+
 
 data class Post(
-    val content: String,
-    val username: String,
-    val profileImage: String?,
-    val projectImage: String?
+    val id: Int,
+    val title: String,
+    val description: String,
+    val image: String,
+    val money_goal: Double,
+    val deadline: String,
+    val user: User
 )
 
 data class User(
-    val first_name: String,
-    val last_name: String,
+    val firstname: String,
+    val lastname: String,
     val profile: Profile?
 )
 
 data class Profile(
     val picture: String?
 )
+data class Project(
+    val id: Int,
+    val title: String,
+    val description: String,
+    val money_goal: String,
+    val deadline: String,
+    val image: String,
+    val image_url: String,
+    val user_id: Int,
+    val created_at: String,
+    val updated_at: String
+)
+
+
+

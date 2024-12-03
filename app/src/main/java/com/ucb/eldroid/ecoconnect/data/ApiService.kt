@@ -3,14 +3,18 @@ package com.ucb.eldroid.ecoconnect.data
 import com.ucb.eldroid.ecoconnect.data.models.LoginRequest
 import com.ucb.eldroid.ecoconnect.data.models.Project
 import com.ucb.eldroid.ecoconnect.data.models.User
-import com.ucb.eldroid.ecoconnect.ui.adapters.Post
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface ApiService {
     @POST("/api/register")
@@ -34,16 +38,29 @@ interface ApiService {
         @Header("Authorization") authToken: String
     ): Call<User>
 
-    // Send the project to the server with the token as a header
-
+    @Multipart
     @POST("/api/projects")
     fun createProject(
-        @Body project: Project,
-        @Header("Authorization") authHeader: String
+        @Header("Authorization") token: String,
+        @Part("title") title: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part("money_goal") moneyGoal: RequestBody,
+        @Part("deadline") deadline: RequestBody,
+        @Part image: MultipartBody.Part? // Image file as a part
+    ): Call<Project>
+
+    @PUT("/api/user/{token}")
+    fun updateUserProfile(
+        @Header("Authorization") token: String,
+        @Path("token") tokenParam: String,
+        @Body userProfile: Map<String, String>
     ): Call<ResponseBody>
 
-    @GET("/api/projects")
-    fun getProjects(
-        @Header("Authorization") authToken: String
-    ): Call<List<Post>>
+
+
+
+    @GET("newsfeed/projects")
+    suspend fun getProjects(@Header("Authorization") token: String): ProjectResponse
+    //@GET("projects")
+    //suspend fun getProjects(@Header("Authorization") token: String): ProjectResponse
 }

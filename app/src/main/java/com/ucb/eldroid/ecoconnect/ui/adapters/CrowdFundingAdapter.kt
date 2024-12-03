@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.ucb.eldroid.ecoconnect.R
-import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.crowdfunding.CrowdFundingFragment
+import com.ucb.eldroid.ecoconnect.data.models.CrowdfundingProject
 import com.ucb.eldroid.ecoconnect.ui.bottomnav.dashboard.crowdfunding.Donation
 
 class CrowdfundingAdapter(

@@ -1,4 +1,4 @@
-package com.ucb.eldroid.ecoconnect.ui.adapters
+package com.ucb.eldroid.ecoconnect.data.models
 
 
 data class CrowdfundingProject(
